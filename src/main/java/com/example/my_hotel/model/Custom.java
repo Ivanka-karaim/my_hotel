@@ -4,10 +4,12 @@
 //import lombok.Builder;
 //import lombok.Data;
 //import lombok.NoArgsConstructor;
+//import org.springframework.format.annotation.DateTimeFormat;
+//
 //import javax.persistence.*;
 //import javax.validation.constraints.Min;
 //import javax.validation.constraints.NotNull;
-//
+//import java.util.Date;
 //
 //
 //@Builder
@@ -16,22 +18,37 @@
 //@Data
 //@Entity
 //
-//public class Room {
+//public class Custom {
 //
 //    @Id
 //    @GeneratedValue(strategy = GenerationType.IDENTITY)
-//    private int id_room;
+//    private int id_order;
+//
+////    @OneToOne
+////    @Column(name="IPN")
+////    private Client IPN;
+//
+//    @ManyToOne
+//    @Column(name="id_room")
+//    private Room room;
 //
 //    @NotNull
-//    private boolean employment;
+//    @DateTimeFormat(pattern = "yyyy-mm-dd")
+//    private Date date_settle;
 //
-//    @Min(1)
-//    private int floor;
+//    @NotNull
+//    @DateTimeFormat(pattern = "yyyy-mm-dd")
+//    private Date date_departure;
 //
-//    @Lob
-//    private byte[] image;
+//    @NotNull
+//    private int number_inhabitants;
 //
-//    private String depiction;
+//    @Min(0)
+//    private float cost_additional_services;
+//
+//    @NotNull
+//    @Min(0)
+//    private float total_cost;
 //
 //    @ManyToOne
 //    @Column(name="id_employee")
