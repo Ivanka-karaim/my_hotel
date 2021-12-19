@@ -9,7 +9,7 @@
 //import javax.persistence.*;
 //import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Size;
-//import java.time.LocalDate;
+//import java.time.Date;
 //
 //@Builder
 //@AllArgsConstructor
@@ -27,11 +27,11 @@
 //
 //    @NotNull
 //    @DateTimeFormat(pattern = "yyyy-mm-dd")
-//    private LocalDate date_arrival;
+//    private Date date_arrival;
 //
 //    @NotNull
 //    @DateTimeFormat(pattern = "yyyy-mm-dd")
-//    private LocalDate date_departure;
+//    private Date date_departure;
 //
 //    @NotNull
 //    private String phone_number;
