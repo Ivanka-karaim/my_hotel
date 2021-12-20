@@ -16,6 +16,7 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
+@Table(name="work_schedule")
 public class Schedules {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
