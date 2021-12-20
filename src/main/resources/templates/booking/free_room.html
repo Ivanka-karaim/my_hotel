@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container mt-5">
+    <h2 class="mt-5">Your date of birth1: <strong th:text="${#dates.format(booking.date_arrival, 'dd/mm/yyyy')}" ></strong></h2>
+    <h2 class="mt-5">Your date of birth2: <strong th:text="${#dates.format(booking.date_departure, 'dd/mm/yyyy')}" ></strong></h2>
+<!--    <h2 class="mt-5"> <strong th:text="${count}" ></strong></h2>-->
+</div>
+</body>
+</html>
