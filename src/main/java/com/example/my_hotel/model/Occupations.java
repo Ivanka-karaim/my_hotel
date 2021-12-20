@@ -1,17 +1,15 @@
 package com.example.my_hotel.model;
 
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-import java.util.Date;
 
 @Builder
 @AllArgsConstructor
@@ -19,7 +17,7 @@ import java.util.Date;
 @Data
 @Entity
 @Table(name="occupations")
-public class Schedules {
+public class Occupations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
