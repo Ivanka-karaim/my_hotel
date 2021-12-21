@@ -15,9 +15,7 @@ public class RoomService {
     private RoomRepository roomRepository;
 
     public List<RoomDTO> getAllRooms() {
-
         List<Room> bookList = roomRepository.findAll();
-
         return parsingBookInBookDTO(bookList);
     }
 
