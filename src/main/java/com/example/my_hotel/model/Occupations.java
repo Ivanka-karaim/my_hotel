@@ -21,12 +21,12 @@ public class Occupations {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
+    
     @NotNull
     @Size(max = 25)
     private String occupation;
 
     @NotNull
     @Min(0)
-    private float salary;
+    private float salary = 0;
 }

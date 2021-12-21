@@ -2,6 +2,7 @@ package com.example.my_hotel.controller;
 
 import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.Booking;
+import com.example.my_hotel.model.Custom;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.repository.RoomRepository;
 import com.example.my_hotel.service.RoomService;
@@ -21,9 +22,21 @@ import java.util.List;
 
 @Controller
 public class CustomController {
+    @Autowired
+    private Custom custom;
+
     @GetMapping("/custom")
     public String employee(Model model) {
         model.addAttribute("title", "Замовлення");
         return "custom";
     }
+
+    @GetMapping("/view")
+    public String view(Model model) {
+        //List<RoomDTO> rooms = custom.getAllRooms();
+        model.addAttribute("title", "Замовлення");
+        return "custom";
+    }
+
+
 }

@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.validation.constraints.NotNull;
-import java.util.Date;
+import java.sql.Date;
 
 @Builder
 @AllArgsConstructor
@@ -19,6 +19,7 @@ import java.util.Date;
 @Table(name="schedules")
 public class Schedules {
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
