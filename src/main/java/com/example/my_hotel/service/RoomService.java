@@ -6,7 +6,9 @@ import com.example.my_hotel.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,6 +25,14 @@ public class RoomService {
     public List<RoomDTO> getAllRooms() {
         List<Room> bookList = roomRepository.findAll();
         return parsingBookInBookDTO(bookList);
+    }
+
+    public List<RoomDTO> getFreeRooms(Date date1, Date date2, int count) {
+        String date_1 = new SimpleDateFormat("yyyy-MM-dd").format(date1);
+        System.out.println(date_1);
+        String date_2 = new SimpleDateFormat("yyyy-MM-dd").format(date2);
+        List<Room> roomList = roomRepository.findByIdRoom(date1, date2, count);
+        return parsingBookInBookDTO(roomList);
     }
 
     private List<RoomDTO> parsingBookInBookDTO(List<Room> list) {

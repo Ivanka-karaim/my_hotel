@@ -49,7 +49,9 @@ public class BookingController {
         }
         else {
             model.addAttribute("booking", booking);
-            List<RoomDTO> rooms = roomService.getAllRooms();
+//            List<RoomDTO> rooms = roomService.getAllRooms();
+            System.out.println("85");
+            List<RoomDTO> rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
             model.addAttribute("rooms", rooms);
             return "booking/free_room";
         }
