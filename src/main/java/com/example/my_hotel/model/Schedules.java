@@ -21,11 +21,11 @@ public class Schedules {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dateBegin;
-    
+
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dateEnd;
