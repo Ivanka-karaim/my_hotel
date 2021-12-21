@@ -22,8 +22,8 @@ import java.util.List;
 
 @Controller
 public class CustomController {
-    @Autowired
-    private Custom custom;
+    //@Autowired
+    //private Custom custom;
 
     @GetMapping("/custom")
     public String employee(Model model) {
