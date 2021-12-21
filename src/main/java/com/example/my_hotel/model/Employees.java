@@ -19,9 +19,6 @@ import javax.validation.constraints.Size;
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
-    private int id_employee;
-
     private int id;
 
     @NotNull
