@@ -25,7 +25,7 @@
     </div>
 </nav>
 <div class="container">
-    <form method="post" th:object="${booking}" >
+    <form method="post" th:object="${booking}" align="center" >
         <div class="form-group row">
             <div class="col-md-4 mt-5">
                 <label for="date1">Date of birth</label>
@@ -47,7 +47,7 @@
             </div>
             <div class="col-md-4 mt-5">
                 <label for="count">Count people:</label>
-                <select id="count" name="count" style="width: 400px">
+                <select id="count" name="count_people" style="width: 400px">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -55,9 +55,7 @@
             </div>
 
         </div>
-
-
-        <button class="btn btn-primary" type="submit">Submit form</button>
+        <button class="btn btn-secondary" type="submit">Search</button>
     </form>
 
 </div>
