@@ -33,9 +33,9 @@ public class Room {
 
     private String depiction;
 
-//    @ManyToOne
-//    @JoinColumn(name="id_employee")
-//    private Employees employee;
+    @ManyToOne
+    @JoinColumn(name="id_employee")
+    private Employees employee;
 
     @ManyToOne
     @JoinColumn(name = "id_classification")

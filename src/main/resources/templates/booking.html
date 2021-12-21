@@ -36,8 +36,6 @@
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="form-group row">
             <div class="col-md-4 mt-5">
                 <label for="date2">Date of birth</label>
                 <div class="input-group date">
@@ -47,22 +45,24 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-4 mt-5">
+                <label for="count">Count people:</label>
+                <select id="count" name="count" style="width: 400px">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                </select>
+            </div>
+
         </div>
-<!--        <div>-->
-<!--            <select id="count" name="count" style="width: 400px">-->
-<!--                <option value="1">1</option>-->
-<!--                <option value="2">2</option>-->
-<!--                <option value="3">3</option>-->
-<!--            </select>-->
-<!--        </div>-->
-<!--        <a class="btn btn-lg btn-primary" role="button">Submit</a>-->
+
+
         <button class="btn btn-primary" type="submit">Submit form</button>
     </form>
 
 </div>
 <div class="container mt-5">
     <h2 class="mt-5"> <strong th:text="${error}" ></strong></h2>
-
 </div>
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>

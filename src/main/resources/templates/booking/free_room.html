@@ -6,9 +6,16 @@
 </head>
 <body>
 <div class="container mt-5">
-    <h2 class="mt-5">Your date of birth1: <strong th:text="${#dates.format(booking.date_arrival, 'dd/mm/yyyy')}" ></strong></h2>
-    <h2 class="mt-5">Your date of birth2: <strong th:text="${#dates.format(booking.date_departure, 'dd/mm/yyyy')}" ></strong></h2>
-<!--    <h2 class="mt-5"> <strong th:text="${count}" ></strong></h2>-->
+    <h2 class="mt-5">Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></h2>
+
+    <h2 class="mt-5"> <strong th:text="${count}" ></strong></h2>
+</div>
+<div class="container mt-5">
+    <div th:each="el: ${rooms}" class="alert alert-info mt-2">
+        <h1 th:text="${el.floor}"/>
+        <p th:text="${el.depiction}"/>
+        <a th:href="'/booking/'+${el.id_room}" class="btn btn-warning">Booking</a>
+    </div>
 </div>
 </body>
 </html>

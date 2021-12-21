@@ -24,9 +24,9 @@ public class Custom {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_order;
 
-    @OneToOne
-    @JoinColumn(name = "IPN")
-    private Client IPN;
+//    @OneToOne
+//    @JoinColumn(name = "IPN")
+//    private Client IPN;
 
     @ManyToOne
     @JoinColumn(name="id_room")

@@ -20,7 +20,6 @@ public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_employee;
-    
     @NotNull
     @Size(max = 50)
     private String surname;    
@@ -30,7 +29,6 @@ public class Employees {
     @NotNull
     @Size(max = 50)
     private String patron;
-    
     @NotNull
     private int ipn;
 }
