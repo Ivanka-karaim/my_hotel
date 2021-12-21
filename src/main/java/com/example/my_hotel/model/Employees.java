@@ -23,13 +23,14 @@ public class Employees {
 
     @NotNull
     @Size(max = 50)
-    private String surname;    
+    private String surname;
     @NotNull
     @Size(max = 50)
-    private String fullname;    
+    private String fullname;
     @NotNull
     @Size(max = 50)
     private String patron;
+
     @NotNull
     private int ipn;
 }
