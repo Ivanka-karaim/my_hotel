@@ -29,6 +29,6 @@ public class AdditionalServices {
 
     @NotNull
     @Min(0)
-    private Date date_departure;
+    private float price;
 
 }
