@@ -20,14 +20,14 @@ public class Order_Services {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_order_service;
+    private int id_order_services;
 
     @ManyToOne
     @JoinColumn(name="id_order")
-    private Custom custom;
+    private Custom id_order;
 
     @ManyToOne
     @JoinColumn(name="id_service")
-    private AdditionalServices additionalServices;
+    private AdditionalServices id_service;
 
 }

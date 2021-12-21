@@ -16,18 +16,18 @@ import java.sql.Date;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="work_schedule")
+@Table(name="schedules")
 public class Schedules {
     @Id
     @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
+
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date dateBegin;
-    
+    private Date datebegin;
+
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date dateEnd;
+    private Date dateend;
 }

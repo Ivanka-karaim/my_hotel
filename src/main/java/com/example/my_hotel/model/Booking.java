@@ -27,15 +27,19 @@ public class Booking {
     private Room room;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_arrival;
 
     @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_departure;
+
+    @NotNull
+    private String name;
 
     @NotNull
     private String phone_number;
 
+    private int count_people;
 
 }

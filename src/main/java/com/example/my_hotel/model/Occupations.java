@@ -28,5 +28,5 @@ public class Occupations {
     
     @NotNull
     @Min(0)
-    private float salary = 0;
+    private float salary;
 }
