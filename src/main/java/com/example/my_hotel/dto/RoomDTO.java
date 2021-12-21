@@ -24,5 +24,4 @@ public class RoomDTO {
     private float cost;
     private int number_beds;
     private int number_rooms;
-
 }
