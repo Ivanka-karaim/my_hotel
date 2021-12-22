@@ -12,6 +12,7 @@ public class BookingService {
     private BookingRepository bookingRepository;
 
     public boolean addBooking(Booking booking) {
+        System.out.println(booking.getDate_arrival());
         Booking book = Booking.
                 builder()
                 .room(booking.getRoom())

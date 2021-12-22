@@ -7,12 +7,13 @@ import com.example.my_hotel.repository.RoomRepository;
 import com.example.my_hotel.service.BookingService;
 import com.example.my_hotel.service.RoomService;
 import org.apache.tomcat.jni.Local;
+import org.joda.time.DateTime;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
+import org.joda.time.Days;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
@@ -29,6 +30,7 @@ public class BookingController {
     private Date date_1;
     private Date date_2;
     private int count_1;
+    private Room room_1;
 
 
     @GetMapping("/booking")
@@ -63,16 +65,22 @@ public class BookingController {
     public String booking_custom(@PathVariable(value="id") int id,   Model model) {
         Booking booking = new Booking();
         booking.setRoom(roomService.getById(id));
+        room_1=booking.getRoom();
         booking.setDate_arrival(date_1);
         booking.setDate_departure(date_2);
         booking.setCount_people(count_1);
-        System.out.println(booking.getDate_arrival());
+        int days = Days.daysBetween(new DateTime(date_1), new DateTime(date_2)).getDays();
+        System.out.println(days);
         model.addAttribute("booking", booking);
         return "booking/form";
     }
     @PostMapping("/booking/{id}")
     public String booking_rest(Booking booking, Model model)  {
-        System.out.println(booking.getName());
+        booking.setDate_arrival(date_1);
+        booking.setDate_departure(date_2);
+        booking.setCount_people(count_1);
+        booking.setRoom(room_1);
+        System.out.println();
         bookingService.addBooking(booking);
         return "general";
     }
