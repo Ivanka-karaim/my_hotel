@@ -16,7 +16,6 @@ import java.util.Date;
 @NoArgsConstructor
 @Data
 @Entity
-
 public class AdditionalServices {
 
     @Id

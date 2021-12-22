@@ -20,7 +20,7 @@ import java.sql.Date;
 public class Employees {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id_employee;
+    private int id;
 
     @NotNull
     @Size(max = 50)
@@ -44,7 +44,7 @@ public class Employees {
 
     @Size(max = 13)
     @NotNull
-    private String phone_num;
+    private String phone_number;
 
     @Size(max = 10)
     @NotNull
