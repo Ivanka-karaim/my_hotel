@@ -34,7 +34,6 @@ public class Booking {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date date_departure;
 
-    @NotNull
     private String name;
 
     @NotNull
