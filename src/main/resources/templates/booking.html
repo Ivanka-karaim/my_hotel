@@ -21,6 +21,10 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
+        <a class="navbar-brand" href="#">Головна</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
 
     </div>
 </nav>
@@ -30,7 +34,7 @@
             <div class="col-md-4 mt-5">
                 <label for="date1">Date of birth</label>
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="date1"  name="date_arrival" />
+                    <input type="text" class="form-control" id="date1"  name="date_arrival" placeholder="" value="" required=""/>
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
@@ -39,7 +43,7 @@
             <div class="col-md-4 mt-5">
                 <label for="date2">Date of birth</label>
                 <div class="input-group date">
-                    <input type="text" class="form-control" id="date2" name="date_departure"/>
+                    <input type="text" class="form-control" id="date2" name="date_departure" placeholder="" value="" required=""/>
                     <div class="input-group-append">
                         <span class="input-group-text"><i class="far fa-calendar-alt"></i></span>
                     </div>
@@ -56,12 +60,11 @@
 
         </div>
         <button class="btn btn-secondary" type="submit">Search</button>
+        <h2 class="mt-5"> <strong th:text="${error}" ></strong></h2>
     </form>
 
 </div>
-<div class="container mt-5">
-    <h2 class="mt-5"> <strong th:text="${error}" ></strong></h2>
-</div>
+
 
 <script th:src="@{/webjars/jquery/jquery.min.js}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.9.0/js/bootstrap-datepicker.min.js" integrity="sha512-T/tUfKSV1bihCnd+MxKD0Hm1uBBroVYBOYSk1knyvQ9VyZJpc/ALb4P0r6ubwVPSGB2GvjeoMAJJImBG12TiaQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

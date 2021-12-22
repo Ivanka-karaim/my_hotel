@@ -1,21 +1,84 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="en"xmlns:fmt="http://www.w3.org/1999/XSL/Transform">
 <head>
     <meta charset="UTF-8">
     <title>Booking</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 <div class="container mt-5">
-    <h2 class="mt-5">Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></h2>
 
-    <h2 class="mt-5"> <strong th:text="${booking.getCount_people()}" ></strong></h2>
 
 </div>
-<div class="container mt-5">
-    <div th:each="el: ${rooms}" class="alert alert-info mt-2">
-        <h1 th:text="${el.floor}"/>
-        <p th:text="${el.depiction}"/>
-        <a th:href="'/booking/'+${el.id_room}" class="btn btn-warning">Booking</a>
+<!--<div class="container mt-5">-->
+<!--    <div class="container marketing">-->
+<!--    <div th:each="el: ${rooms}" class="alert alert-info mt-2">-->
+<!--        <div class="row featurette">-->
+<!--            <div class="col-md-7">-->
+<!--                <h1 th:text="${el.floor}"/>-->
+<!--                <p th:text="${el.depiction}"/>-->
+<!--                <h1 th:text="${el.cost}"/>-->
+<!--                <a th:href="'/booking/'+${el.id_room}" class="btn btn-secondary">Booking</a>-->
+<!--            </div>-->
+<!--            <div class="col-md-5">-->
+<!--                <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#eee"></rect><text x="50%" y="50%" fill="#aaa" dy=".3em">500x500</text></svg>-->
+<!--            </div>-->
+
+<!--        </div>-->
+<!--    </div>-->
+
+<!--    </div>-->
+<!--</div>-->
+<main>
+    <h2 class="mt-5">Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></h2>
+    <h2 class="mt-5"> <strong th:text="${booking.getCount_people()}" ></strong></h2>
+    <div class="container-marketing" align="center">
+        <div th:each="el: ${rooms}" class="alert alert-info mt-2">
+            <div class="form-group row">
+                <div class="col-md-7 order-md-2" >
+                <img th:src="@{img/f1.jpg}"width="300" height="200">
+                </div>
+                <div class="col-md-7 order-md-2" align="left">
+                <h2 class="featurette-heading" th:text="${el.classification_room}">гесрпсге</h2>
+                <p>Price: <strong th:text="${el.cost}"></strong></p>
+                </div>
+
+            </div>
+
+            <hr class="featurette-divider">
+        </div>
+    </div>
+</main>
+<div class="container">
+    <h2>Media Object</h2>
+    <p>Use the "media-left" class to left-align a media object. Text that should appear next to the image, is placed inside a container with class="media-body".</p>
+    <p>Tip: Use the "media-right" class to right-align the media object.</p><br>
+
+    <!-- Left-aligned media object -->
+    <div class="media">
+        <div class="media-left">
+            <img th:src="@{img/f1.jpg}" class="media-object" style="width:500px">
+        </div>
+        <div class="media-body">
+            <h4 class="media-heading">Left-aligned</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+    </div>
+    <hr>
+
+    <!-- Right-aligned media object -->
+    <div class="media">
+        <div class="media-body">
+            <h4 class="media-heading">Right-aligned</h4>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+        </div>
+        <div class="media-right">
+            <img th:src="@{img/f1.jpg}" class="media-object" style="width:60px">
+        </div>
     </div>
 </div>
 </body>
