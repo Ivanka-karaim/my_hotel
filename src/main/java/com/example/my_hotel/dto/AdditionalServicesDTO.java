@@ -8,6 +8,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 
@@ -15,14 +18,8 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CustomDTO {
-    private int id_order;
-    private Client IPN;
-    private Room id_room;
-    private Date date_settle;
-    private Date date_departure;
-    private int number_inhabitants;
-    private float cost_additional_services;
-    private float total_cost;
-
+public class AdditionalServicesDTO{
+    private int id_service;
+    private String type_service;
+    private float price;
 }
