@@ -34,7 +34,7 @@ public class CustomService {
         for (Custom custom : list) {
             customDTOS.add(CustomDTO.builder()
                     .id_order(custom.getId_order())
-                    //.IPN(custom.getIPN())
+                    .IPN(custom.getIPN())
                     .id_room(custom.getId_room())
                     .date_settle(custom.getDate_settle())
                     .date_departure(custom.getDate_departure())
