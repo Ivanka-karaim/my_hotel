@@ -61,10 +61,23 @@
             </nav>
         </div>
     </header>
-
     <main class="px-3">
-        <h1 th:if="${title=='View'}" th:utext="${page}"></h1>
-        <h2 th:if="${title=='Add'}">Hello add</h2>
+        <div th:if="${title=='View'}" >
+            <div th:each="el : ${additionalservices}" class="alert alert-info mt-2">
+                <h1 th:text="${el.type_service}"></h1>
+                <p th:text="${el.price}"></p>
+            </div>
+        </div>
+        <div th:if="${title=='Add'}">
+            <div class="container mt-5">
+                <h1>Add additional services</h1>
+                <form action="/addServ" method="post">
+                    <input type="text" name="type_service" placeholder="Enter type of additional service" class="form-control"><br>
+                    <input type="text" name="price" placeholder="Enter price of additional service" class="form-control"><br>
+                    <button type="submit" class="btn btn-success">Add new additional service</button>
+                </form>
+            </div>
+        </div>
         <h3 th:if="${title=='Remove'}">Hello remove</h3>
         <h3 th:if="${title=='Edit'}">Hello edit</h3>
     </main>

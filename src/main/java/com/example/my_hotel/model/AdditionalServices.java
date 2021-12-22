@@ -19,7 +19,7 @@ import java.util.Date;
 public class AdditionalServices {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id_service;
 
     @NotNull
@@ -29,5 +29,10 @@ public class AdditionalServices {
     @NotNull
     @Min(0)
     private float price;
+
+    public AdditionalServices(String type_service, float price){
+        this.type_service=type_service;
+        this.price=price;
+    }
 
 }

@@ -7,6 +7,7 @@ import com.example.my_hotel.model.AdditionalServices;
 import com.example.my_hotel.model.Booking;
 import com.example.my_hotel.model.Custom;
 import com.example.my_hotel.model.Room;
+import com.example.my_hotel.repository.AdditionalServicesRepository;
 import com.example.my_hotel.repository.RoomRepository;
 import com.example.my_hotel.service.AdditionalServicesService;
 import com.example.my_hotel.service.CustomService;
@@ -30,11 +31,14 @@ public class AdditionalServicesController {
     @Autowired
     private AdditionalServicesService additionalServicesService;
 
+    @Autowired
+    private AdditionalServicesRepository additionalServicesRepository;
+
     @GetMapping("/viewServ")
     public String view(Model model) {
         List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
         model.addAttribute("title", "View");
-        model.addAttribute("page", additionalServices);
+        model.addAttribute("additionalservices", additionalServices);
         return "additionalservices";
     }
 
@@ -57,6 +61,12 @@ public class AdditionalServicesController {
         List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
         model.addAttribute("title", "Edit");
         return "additionalservices";
+    }
+    @PostMapping("/addServ")
+    public String add(@RequestParam String type_service, @RequestParam float price) {
+        AdditionalServices additionalServices = new AdditionalServices(type_service, price);
+        additionalServicesRepository.save(additionalServices);
+        return "redirect:/viewServ";
     }
 }
 

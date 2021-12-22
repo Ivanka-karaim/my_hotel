@@ -47,6 +47,4 @@ public class Client {
     @JoinColumn(name ="id_response")
     private Response id_response ;
 
-
-
 }
