@@ -35,6 +35,10 @@ public class RoomService {
         return parsingBookInBookDTO(roomList);
     }
 
+    public boolean addRoom() {
+        return true;
+    }
+
     private List<RoomDTO> parsingBookInBookDTO(List<Room> list) {
         List<RoomDTO> roomDTOs = new ArrayList<>();
 

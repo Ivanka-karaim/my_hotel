@@ -9,7 +9,8 @@
     <h2 class="mt-5">Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong> Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></h2>
     <h2 class="mt-5">Count: <strong th:text="${booking.getCount_people()}" ></strong></h2>
 </div>
-<div class="container mt-5">
+<div class="col-md-7 col-lg-8">
+    <div class="tableTariffs">
     <form method="post"  th:object="${booking}" align="center" class="needs-validation">
         <div class="row g-3">
             <div class="col-sm-6">
@@ -26,6 +27,7 @@
         <button class="btn btn-secondary" type="submit">Booking</button>
         </div>
     </form>
+    </div>
 </div>
 </body>
 </html>

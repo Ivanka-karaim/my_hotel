@@ -4,6 +4,7 @@ import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.Booking;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.repository.RoomRepository;
+import com.example.my_hotel.service.BookingService;
 import com.example.my_hotel.service.RoomService;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,8 @@ import java.util.Optional;
 public class BookingController {
     @Autowired
     private RoomService roomService;
+    @Autowired
+    private BookingService bookingService;
     private Date date_1;
     private Date date_2;
     private int count_1;
@@ -70,6 +73,7 @@ public class BookingController {
     @PostMapping("/booking/{id}")
     public String booking_rest(Booking booking, Model model)  {
         System.out.println(booking.getName());
+        bookingService.addBooking(booking);
         return "general";
     }
 }
