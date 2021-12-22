@@ -14,50 +14,80 @@
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <a class="navbar-brand" href="#">Відгуки</a>
+        <a class="navbar-brand" href="/response">Відгуки</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
                 aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-
     </div>
+
 </nav>
+<!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">-->
+<!--    <div class="carousel-indicators">-->
+<!--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
+<!--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>-->
+<!--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>-->
+<!--    </div>-->
+<!--    <div class="carousel-inner">-->
+<!--        <div class="carousel-item active">-->
+<!--            <img th:src="@{img/f1.jpg}"class="d-block w-100" alt="...">-->
+<!--        </div>-->
+<!--        <div class="carousel-item">-->
+<!--            <img th:src="@{img/f2.jpg}" class="d-block w-100" alt="...">-->
+<!--        </div>-->
+<!--        <div class="carousel-item">-->
+<!--            <img th:src="@{img/f3.jpg}"class="d-block w-100" alt="...">-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">-->
+<!--        <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
+<!--        <span class="visually-hidden">Previous</span>-->
+<!--    </button>-->
+<!--    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">-->
+<!--        <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
+<!--        <span class="visually-hidden">Next</span>-->
+<!--    </button>-->
+<!--</div>-->
 
 <main class="container">
-    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="img/f1.jpg" class="d-block w-100" alt="f1">
-            </div>
-            <div class="carousel-item">
-                <img src="img/f2.jpg" class="d-block w-100" alt="f2">
-            </div>
-            <div class="carousel-item">
-                <img src="img/f3.jpg" class="d-block w-100" alt="f3">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-                data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
+    <h1 class="nazvaHotel">Nazva hotel</h1>
     <div class="bg-light p-5 rounded">
-        <img th:src="@{img/phot.jpg}">
-        <h1>Navbar example</h1>
-        <p class="lead">This example is a quick exercise to illustrate how the top-aligned navbar works. As you scroll,
-            this navbar remains in its original position and moves with the rest of the page.</p>
+<!--        <h1>Nazva hotel</h1>-->
+        <img th:src="@{img/f1.jpg}"width="800" height="500">
+        <p class="lead">texttexttexttexttext</p>
         <a class="btn btn-lg btn-primary" href="/booking" role="button">Забронювати номер»</a>
     </div>
 </main>
 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
+<div>
+    <article class="sidebar">
+        <!--contacts section-->
+        <div class="contacts">
+            <h3 class="sidebar-title"> Contacts</h3>
+            <div>
+                <span class="contact-type">C:</span>
+                <a href="tel:+380 97 13 372 11" class="contact-link">+380 97 13 372 11</a>
+            </div>
+            <div>
+                <span class="contact-type">E:</span>
+                <a href="mailto:dnkrupkoo@gmail.com"class="contact-link"> dnkrupkoo@gmail.com</a>
+            </div>
+        </div>
 
+    </article>
+<!--    <article>-->
+<!--        <h1>Contact Information</h1>-->
+<!--        <ol>-->
+<!--            <li>Grow a long, majestic beard.</li>-->
+<!--            <li>Wear a tall, pointed hat.</li>-->
+<!--            <li>Have I mentioned the beard?</li>-->
+<!--        </ol>-->
+<!--        <footer>-->
+<!--            <p>© 2018 Gandalf</p>-->
+<!--        </footer>-->
+<!--    </article>-->
+</div>
 </body>
 </html>
