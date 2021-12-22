@@ -10,13 +10,13 @@
     <h2 class="mt-5">Count: <strong th:text="${booking.getCount_people()}" ></strong></h2>
 </div>
 <div class="container mt-5">
-    <form method="post"  th:object="${booking}" align="center">
-        <div class="form-group row">
-            <div class="col-md-4 mt-5">
-                <label for="fullname">Enter name:</label>
-                <input type="text" class="form-control" id="fullname"  name="name" />
+    <form method="post"  th:object="${booking}" align="center" class="needs-validation">
+        <div class="row g-3">
+            <div class="col-sm-6">
+                <label for="fullname" class="from-label">Enter name:</label>
+                <input type="text" class="form-control" id="fullname" name="name" placeholder="" value="" required="">
             </div>
-        </div>
+        <hr class="my-4">
         <div class="form-group row">
             <div class="col-md-4 mt-5">
                 <label for="phone">Enter phone number:</label>
@@ -24,6 +24,7 @@
             </div>
         </div>
         <button class="btn btn-secondary" type="submit">Booking</button>
+        </div>
     </form>
 </div>
 </body>
