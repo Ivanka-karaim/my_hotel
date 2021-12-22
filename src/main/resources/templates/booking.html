@@ -32,7 +32,7 @@
     <form method="post" th:object="${booking}" align="center" >
         <div class="form-group row">
             <div class="col-md-4 mt-5">
-                <label for="date1">Date of birth</label>
+                <label for="date1">Date arrival</label>
                 <div class="input-group date">
                     <input type="text" class="form-control" id="date1"  name="date_arrival" placeholder="" value="" required=""/>
                     <div class="input-group-append">
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-md-4 mt-5">
-                <label for="date2">Date of birth</label>
+                <label for="date2">Date departure</label>
                 <div class="input-group date">
                     <input type="text" class="form-control" id="date2" name="date_departure" placeholder="" value="" required=""/>
                     <div class="input-group-append">
@@ -51,7 +51,7 @@
             </div>
             <div class="col-md-4 mt-5">
                 <label for="count">Count people:</label>
-                <select id="count" name="count_people" style="width: 400px">
+                <select id="count" name="count_people" style="width: 300px">
                     <option value="1">1</option>
                     <option value="2">2</option>
                     <option value="3">3</option>
@@ -59,7 +59,8 @@
             </div>
 
         </div>
-        <button class="btn btn-secondary" type="submit">Search</button>
+        <button class="btn btn-secondary" type="submit" href="/booking/free_rooms">Search</button>
+
         <h2 class="mt-5"> <strong th:text="${error}" ></strong></h2>
     </form>
 
