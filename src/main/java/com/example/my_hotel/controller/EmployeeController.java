@@ -97,6 +97,9 @@ public class EmployeeController {
 
     @GetMapping("/employee/profile")
     public String profile(Model model){
+        if (sessionId == null){
+            return "login";
+        }
         //List<Employees> employee = employeesRepository.findAllById();
         //String sql = "SELECT * FROM employees WHERE id = " + sessionId;
         //@Query(sql)
