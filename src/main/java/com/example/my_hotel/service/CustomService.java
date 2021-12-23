@@ -35,10 +35,7 @@ public class CustomService {
             customDTOS.add(CustomDTO.builder()
                     .id_order(custom.getId_order())
                     .IPN(custom.getIPN())
-                    .id_room(custom.getId_room())
-                    .date_settle(custom.getDate_settle())
-                    .date_departure(custom.getDate_departure())
-                    .number_inhabitants(custom.getNumber_inhabitants())
+                    .id_booking(custom.getId_booking())
                     .cost_additional_services(custom.getCost_additional_services())
                     .total_cost(custom.getTotal_cost())
                     .build());
