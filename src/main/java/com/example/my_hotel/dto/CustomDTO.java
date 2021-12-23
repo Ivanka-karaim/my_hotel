@@ -1,6 +1,7 @@
 package com.example.my_hotel.dto;
 
 //import com.example.my_hotel.model.Client;
+import com.example.my_hotel.model.Booking;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.model.Client;
 import lombok.AllArgsConstructor;
@@ -18,10 +19,7 @@ import java.util.Date;
 public class CustomDTO {
     private int id_order;
     private Client IPN;
-    private Room id_room;
-    private Date date_settle;
-    private Date date_departure;
-    private int number_inhabitants;
+    private Booking id_booking;
     private float cost_additional_services;
     private float total_cost;
 

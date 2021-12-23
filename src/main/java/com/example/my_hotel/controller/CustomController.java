@@ -31,7 +31,7 @@ public class CustomController {
     public String view(Model model) {
         List<CustomDTO> customs = customService.getAllCustoms();
         model.addAttribute("title", "View");
-        model.addAttribute("page", customs);
+        model.addAttribute("customs", customs);
         return "custom";
     }
 

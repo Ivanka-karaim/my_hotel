@@ -13,4 +13,7 @@ import java.util.Optional;
 
 public interface CustomRepository extends CrudRepository<Custom, Integer>  {
     List<Custom> findAll();
+//
+//    @Query("SELECT * FROM Custom WHERE id_room = :Room")
+//    List<Custom> findByIdRoom(@Param("Room") Integer Room);
 }

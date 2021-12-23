@@ -7,21 +7,7 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/employee">Log in as an employee</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <a class="navbar-brand" href="/response">Response</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-
-</nav>
+<div th:insert="blocks/header :: header"></div>
 <!--<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">-->
 <!--    <div class="carousel-indicators">-->
 <!--        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>-->
@@ -60,22 +46,8 @@
 <script src="/docs/5.1/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
         crossorigin="anonymous"></script>
-<div>
-    <article class="sidebar">
-        <!--contacts section-->
-        <div class="contacts">
-            <h3 class="sidebar-title"> Contacts</h3>
-            <div>
-                <span class="contact-type">C:</span>
-                <a href="tel:+380 97 13 372 11" class="contact-link">+380 97 13 372 11</a>
-            </div>
-            <div>
-                <span class="contact-type">E:</span>
-                <a href="mailto:dnkrupkoo@gmail.com"class="contact-link"> dnkrupkoo@gmail.com</a>
-            </div>
-        </div>
+<div th:insert="blocks/footer :: footer">
 
-    </article>
 <!--    <article>-->
 <!--        <h1>Contact Information</h1>-->
 <!--        <ol>-->

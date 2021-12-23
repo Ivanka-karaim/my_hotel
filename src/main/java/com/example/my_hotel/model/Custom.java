@@ -29,19 +29,8 @@ public class Custom {
     private Client IPN;
 
     @ManyToOne
-    @JoinColumn(name="id_room")
-    private Room id_room;
-
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date date_settle;
-
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date date_departure;
-
-    @NotNull
-    private int number_inhabitants;
+    @JoinColumn(name="id_booking")
+    private Booking id_booking;
 
     @Min(0)
     private float cost_additional_services;
@@ -49,6 +38,4 @@ public class Custom {
     @NotNull
     @Min(0)
     private float total_cost;
-
-
 }

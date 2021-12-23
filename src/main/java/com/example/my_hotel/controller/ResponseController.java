@@ -22,7 +22,7 @@ import java.util.List;
 @Controller
 public class ResponseController {
     @GetMapping("/response")
-    public String employee(Model model) {
+    public String response(Model model) {
         model.addAttribute("title", "Response");
         return "response";
     }

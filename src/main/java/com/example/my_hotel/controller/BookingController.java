@@ -57,6 +57,9 @@ public class BookingController {
 //            for (RoomDTO room: rooms) {
 //
 //            }
+            for(RoomDTO r:rooms) {
+                System.out.println(r.getId_classification());
+            }
             model.addAttribute("rooms", rooms);
             return "booking/free_room";
         }
