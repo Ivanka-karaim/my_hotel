@@ -1,5 +1,6 @@
 package com.example.my_hotel.controller;
 
+import com.example.my_hotel.dto.AdditionalServicesDTO;
 import com.example.my_hotel.dto.CustomDTO;
 import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.Booking;
@@ -44,8 +45,9 @@ public class CustomController {
 
     @GetMapping("/remove")
     public String remove(Model model) {
-        List<CustomDTO> customs = customService.getAllCustoms();
+        List<CustomDTO> custom = customService.getAllCustoms();
         model.addAttribute("title", "Remove");
+        model.addAttribute("additionalservices", custom);
         return "custom";
     }
 
@@ -53,6 +55,7 @@ public class CustomController {
     public String edit (Model model) {
         List<CustomDTO> customs = customService.getAllCustoms();
         model.addAttribute("title", "Edit");
+        model.addAttribute("additionalservices", customs);
         return "custom";
     }
 }

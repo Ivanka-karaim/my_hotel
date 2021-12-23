@@ -91,7 +91,7 @@
             <div th:each="el : ${additionalservices}" class="alert alert-info mt-2">
                 <h1 th:text="${el.type_service}"></h1>
                 <p th:text="${el.price}"></p>
-                <form th:action="'/edit_service/'+${el.id_service}" method="post">
+                <form th:action="'/edit_service/'+${el.id_service}" method="get">
                     <button type="submit" class="btn btn-warning">Edit service</button>
                 </form>
             </div>

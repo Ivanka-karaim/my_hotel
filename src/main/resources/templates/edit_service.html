@@ -58,9 +58,9 @@
     <main class="px-3">
             <div class="container mt-5">
                 <h1>Edit additional service</h1>
-                <form method="post">
-                    <input type="text" th:value="${el.type_service}" name="type_service" placeholder="Enter type of additional service" class="form-control"><br>
-                    <input type="text" th:value="${price}" name="price" placeholder="Enter price of additional service" class="form-control"><br>
+                <form th:action="'/edit_service/'+${service.getId_service()}" method="post">
+                    <input type="text" th:value="${service.getType_service()}" name="type_service" placeholder="Enter type of additional service" class="form-control"><br>
+                    <input type="text" th:value="${service.getPrice()}" name="price" placeholder="Enter price of additional service" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Edit</button>
                 </form>
             </div>
