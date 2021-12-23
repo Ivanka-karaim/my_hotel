@@ -40,7 +40,8 @@ public class EmployeeController {
         if (sessionId == null){
             return "login";
         }
-        return "employee-profile";
+        return "employee";
+        //return "employee-profile";
     }
 
 
@@ -108,9 +109,9 @@ public class EmployeeController {
 //      }
         Optional<Employees> opt;
         try {
-            System.out.println("\n\n\nId:" + sessionId + "\n\n\n");
+            //System.out.println("\n\n\nId:" + sessionId + "\n\n\n");
             opt = employeesRepository.findById(sessionId);
-            System.out.println("\n\n\nId:" + opt.get().getId() + "\n\n\n");
+            //System.out.println("\n\n\nId:" + opt.get().getId() + "\n\n\n");
         }catch (IllegalArgumentException e){
             return "general";
         }
@@ -141,8 +142,8 @@ public class EmployeeController {
         //Occupations occupation = occupationsRepository.findById();
         //Occupations occupation = employee.getId_occupation();
         Occupations occupation = occupationsRepository.findById(employee.getId_occupation().getId()).get();
-        //model.addAttribute("occupation", occupation.getOccupation());
-        //model.addAttribute("salary", occupation.getSalary());
+        model.addAttribute("occupation", occupation.getOccupation());
+        model.addAttribute("salary", occupation.getSalary());
         return "employee-profile";
     }
 
