@@ -21,6 +21,7 @@ import java.util.List;
 
 @Controller
 public class EmployeeController {
+
     @GetMapping("/employee")
     public String employee(Model model) {
         model.addAttribute("title", "Працівник");

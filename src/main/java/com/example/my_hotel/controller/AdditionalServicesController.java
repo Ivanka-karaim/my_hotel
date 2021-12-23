@@ -84,7 +84,15 @@ public class AdditionalServicesController {
         AdditionalServices additionalServices = additionalServicesRepository.findById(id_service).orElseThrow();
         additionalServices.setType_service(type_service);
         additionalServices.setPrice(price);
-        return "redirect:/viewServ";
+        additionalServicesRepository.save(additionalServices);
+        return "edit_service";
+    }
+
+    @PostMapping("/edit_service/{id_service}")
+    public String edit_service (Model model) {
+        List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
+        model.addAttribute("additionalservices", additionalServices);
+        return "edit_service/{id_service}";
     }
 }
 
