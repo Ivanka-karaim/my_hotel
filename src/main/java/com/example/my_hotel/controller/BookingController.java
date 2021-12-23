@@ -59,6 +59,7 @@ public class BookingController {
             List<RoomDTO> rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
             for(RoomDTO r:rooms) {
                 r.setCost(r.getCost()*days);
+                System.out.println(r.getId_room());
             }
             model.addAttribute("rooms", rooms);
             return "booking/free_room";

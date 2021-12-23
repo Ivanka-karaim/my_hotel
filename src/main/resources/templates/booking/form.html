@@ -7,17 +7,30 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+
+function ValidPhone() {
+    var re = /^\d[\d\(\)\ -]{4,14}\d$/;
+    var myPhone = document.getElementById('phone_number').value;
+    var valid = re.test(myPhone);
+    if (valid) output = 'Номер телефона введен правильно!';
+    else output = 'Номер телефона введен неправильно!';
+    document.getElementById('message').innerHTML = document.getElementById('message').innerHTML+'<br />'+output;
+    return valid;
+}
+
+</script>
+
 </head>
 <body>
-<div th:insert="blocks/header :: header"></div>
-<div class="container mt-5">
-    <h2 class="mt-5">Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong> Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></h2>
-    <h2 class="mt-5">Count: <strong th:text="${booking.getCount_people()}" ></strong></h2>
-</div>
+
 
 <div class="container" align="center">
     <h2>Booking</h2>
-    <form class="form-horizontal" method="post" th:object="${booking}">
+    <p>Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong></p>
+    <p>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></p>
+    <p class="mt-5">Count people: <strong th:text="${booking.getCount_people()}" ></strong></p><br>
+    <form class="form-horizontal" method="post" th:object="${booking}" onsubmit="return (ValidMail()&&ValidPhone())">
         <div class="form-group row">
             <label class="control-label col-sm-2" for="name">Name:</label>
             <div class="col-sm-10">
@@ -28,7 +41,7 @@
         <div class="form-group row">
             <label class="control-label col-sm-2" for="phone_number">Phone_number:</label>
             <div class="col-sm-10">
-                <input class="form-control" id="phone_number" placeholder="+380668886660" name="phone_number">
+                <input class="form-control" type="number" id="phone_number" placeholder="+380668886660" name="phone_number">
             </div>
         </div>
         <hr>
