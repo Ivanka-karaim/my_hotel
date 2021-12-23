@@ -22,5 +22,5 @@ public class CustomDTO {
     private Booking id_booking;
     private float cost_additional_services;
     private float total_cost;
-
+    private boolean paid;
 }

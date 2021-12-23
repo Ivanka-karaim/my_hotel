@@ -38,6 +38,7 @@ public class CustomService {
                     .id_booking(custom.getId_booking())
                     .cost_additional_services(custom.getCost_additional_services())
                     .total_cost(custom.getTotal_cost())
+                    .paid(custom.isPaid())
                     .build());
         }
 
