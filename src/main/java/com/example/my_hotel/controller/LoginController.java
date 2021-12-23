@@ -1,4 +1,4 @@
-package com.example.my_hotel.controller;
+/*package com.example.my_hotel.controller;
 
 import com.example.my_hotel.model.Employees;
 import com.example.my_hotel.repository.EmployeesRepository;
@@ -21,6 +21,9 @@ public class LoginController {
 
     @GetMapping("/login")
     public String login(Model model){
+        if(sessionId != null){
+            return "redirect:/employee";
+        }
         model.addAttribute("title", "Вхід");
         //model.addAttribute("email","");
         model.addAttribute("errorEmail","");
@@ -67,7 +70,8 @@ public class LoginController {
         if(authorized) {
             return "employee";
         }
-         */
+
         //return "employee";
     }
 }
+*/
