@@ -16,7 +16,6 @@ import lombok.NoArgsConstructor;
 public class RoomDTO {
     private int id_room;
     private int floor;
-    private boolean employment;
     private String image;
     private String depiction;
     private int id_classification;

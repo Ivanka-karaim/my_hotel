@@ -30,6 +30,10 @@ public class Classificationroom {
 
     @Min(1)
     private int number_rooms;
+
+    public String toString() {
+        return  this.classification_room + "', Cost: '" + this.cost + "', Number beds: '" + this.number_beds + "'";
+    }
 }
 
 

@@ -17,13 +17,15 @@ import javax.validation.constraints.Size;
 @Entity
 @Table(name="room")
 public class Room {
-
+    public Room(int floor, String image, String depiction, Classificationroom classificationroom) {
+        this.floor=floor;
+        this.depiction=depiction;
+        this.classificationroom=classificationroom;
+        this.image=image;
+    }
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id_room;
-
-    @NotNull
-    private boolean employment;
 
     @Min(1)
     private int floor;
@@ -33,9 +35,6 @@ public class Room {
 
     private String depiction;
 
-    @ManyToOne
-    @JoinColumn(name="id_employee")
-    private Employees employee;
 
     @ManyToOne
     @JoinColumn(name = "id_classification")
