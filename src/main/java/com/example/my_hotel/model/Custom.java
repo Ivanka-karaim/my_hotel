@@ -38,4 +38,8 @@ public class Custom {
     @NotNull
     @Min(0)
     private float total_cost;
+
+    @NotNull
+    private boolean paid;
+
 }
