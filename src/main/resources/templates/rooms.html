@@ -83,6 +83,13 @@
             </div>
         </div>
         <h3 th:if="${title=='Remove'}">
+            <div class="container mt-5">
+                <h1>Remove rooms</h1>
+                <form action="/removeRoom" method="post">
+                    <input type="text" name="id_room" placeholder="Enter id_room" class="form-control"><br>
+                    <button type="submit" class="btn btn-success">Search</button>
+                </form>
+            </div>
             <div th:each="el : ${rooms}" class="alert alert-info mt-2">
                 <h1 th:text="${el.id_room}"></h1>
                 <p th:text="${el.depiction}"></p>

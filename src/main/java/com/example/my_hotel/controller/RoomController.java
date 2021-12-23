@@ -47,7 +47,13 @@ public class RoomController {
         model.addAttribute("rooms", rooms);
         return "rooms";
     }
-
+    @PostMapping("/removeRoom")
+    public String remove_room(@RequestParam int id_room, Model model) {
+        RoomDTO room = roomService.getId(id_room);
+        model.addAttribute("rooms", room);
+        model.addAttribute("title", "Remove");
+        return "rooms";
+    }
     @GetMapping("/editRoom")
     public String edit (Model model) {
         List<RoomDTO> rooms = roomService.getAllRooms();
