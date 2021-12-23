@@ -2,6 +2,7 @@ package com.example.my_hotel.service;
 
 import com.example.my_hotel.dto.CustomDTO;
 import com.example.my_hotel.dto.RoomDTO;
+import com.example.my_hotel.model.Booking;
 import com.example.my_hotel.model.Custom;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.repository.CustomRepository;
@@ -27,6 +28,15 @@ public class CustomService {
         List<Custom> customList = customRepository.findAll();
         return parsingCustomInCustomDTO(customList);
     }
+
+//    public List<CustomDTO> getAllData(){
+//        List<Custom> customList = customRepository.joinCustomBooking();
+//        //List<Booking> bookingList =
+//
+//        return parsingCustomInCustomDTO(customList);
+//    }
+
+
 
     private List<CustomDTO> parsingCustomInCustomDTO(List<Custom> list) {
         List<CustomDTO> customDTOS = new ArrayList<>();

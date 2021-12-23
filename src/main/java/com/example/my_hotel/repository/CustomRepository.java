@@ -11,9 +11,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public interface CustomRepository extends CrudRepository<Custom, Integer>  {
+public interface CustomRepository extends CrudRepository<Custom, Integer> {
     List<Custom> findAll();
-//
-//    @Query("SELECT * FROM Custom WHERE id_room = :Room")
-//    List<Custom> findByIdRoom(@Param("Room") Integer Room);
+
+    @Query("SELECT c FROM Custom c WHERE c.id_booking = (SELECT b.id_booking FROM Booking b WHERE b.date_arrival=now() AND b.phone_number=:current_number)")
+    List<Custom> findCustomByNumberDate(@Param("current_number") String current_number);
+
+
+//    @Query("SELECT c, b FROM Custom c JOIN c.id_booking b")
+//    List<Custom> joinCustomBooking();
 }

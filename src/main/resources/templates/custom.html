@@ -62,23 +62,73 @@
         </div>
     </header>
 
-    <main class="px-3">
-        <div th:if="${title=='View'}" >
-            <div th:each="el : ${customs}" class="alert alert-info mt-2">
-                <h1 th:text="${el.id_order}"></h1>
-                <p th:text="${el.IPN}"></p>
-                <p th:text="${el.id_room}"></p>
-                <p th:text="${el.date_settle}"></p>
-                <p th:text="${el.date_departure}"></p>
-                <p th:text="${el.number_inhabitants}"></p>
-                <p th:text="${el.cost_additional_services}"></p>
-                <p th:text="${el.total_cost}"></p>
+        <main class="px-3">
+
+            <div th:if="${title=='View'}" >
+
+                <div th:if="${type=='More'}" class="alert alert-info mt-2">
+                    <p  th:text="${'Id of booking: '+ custom.getId_booking().getId_booking()}"></p>
+                    <p th:text="${'Id of room: '+custom.getId_booking().getRoom().getId_room()}"></p>
+                    <p th:text="${'Date of settle: '+custom.getId_booking().getDate_arrival()}"></p>
+                    <p th:text="${'Date of departure: ' +custom.getId_booking().getDate_departure()}"></p>
+                    <p th:text="${'Name: ' + custom.getId_booking().getName()}"></p>
+                    <p th:text="${'Phone number: '+custom.getId_booking().getPhone_number()}"></p>
+                    <p th:text="${'Count of people: '+custom.getId_booking().getCount_people()}"></p>
+                </div>
+                <div th:if="${type=='Preview'}">
+
+                    <div th:each="el : ${customs.keySet()}" class="alert alert-info mt-2">
+                        <p th:text="${customs.get(el).getSurname()}"></p>
+                        <p th:text="${customs.get(el).getName()}"></p>
+                        <p th:text="${customs.get(el).getPatronymic()}"></p>
+                        <form th:action="'/view/'+${el}" method="get">
+                            <button type="submit" class="btn btn-warning">More</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-        </div>
-        <h2 th:if="${title=='Add'}">Hello add</h2>
-        <h3 th:if="${title=='Remove'}">Hello remove</h3>
-        <h3 th:if="${title=='Edit'}">Hello edit</h3>
-    </main>
+
+            <div th:if="${title=='Add'}">
+                <div class="container mt-5">
+                    <h1>Add custom</h1>
+                    <form action="/add" method="post">
+                        <input type="text" name="IPN" placeholder="Enter IPN" class="form-control"><br>
+                        <input type="text" name="id_booking" placeholder="Enter id of booking" class="form-control"><br>
+                        <div th:each="el:${services}">
+                            <label>[[${el.getType_service()}]]<input th:name="${el.getId_service()}" type="checkbox" ></label>
+                        </div>
+                        <button type="submit" class="btn btn-success">Add new custom</button>
+                    </form>
+                </div>
+            </div>
+            
+            <h3 th:if="${title=='Remove'}">
+                <div class="container mt-5">
+                    <h1>Remove custom</h1>
+                    <form action="/remove" method="post">
+                        <input type="text" name="id_order" placeholder="Enter id of order" class="form-control"><br>
+                        <input type="text" name="IPN" placeholder="Enter IPN" class="form-control"><br>
+                        <input type="text" name="id_booking" placeholder="Enter id of booking" class="form-control"><br>
+                        <input type="text" name="cost_additional_services" placeholder="" class="form-control"><br>
+                        <input type="text" name="total_cost" placeholder="Enter price of additional service" class="form-control"><br>
+                        <button type="submit" class="btn btn-success">Remove custom</button>
+                    </form>
+                </div>
+            </h3>
+            <div th:if="${title=='Edit'}">
+                <div th:each="el : ${customs}" class="alert alert-info mt-2">
+                    <h1 th:text="${el.id_order}"></h1>
+                    <p th:text="${el.IPN}"></p>
+                    <p th:text="${el.id_booking}"></p>
+                    <p th:text="${el.cost_additional_services}"></p>
+                    <p th:text="${el.total_cost}"></p>
+                    <p th:text="${el.paid}"></p>
+                    <form th:action="'/custom/'+${el.id_order}" method="get">
+                        <button type="submit" class="btn btn-warning">Edit custom</button>
+                    </form>
+                </div>
+            </div>
+        </main>
 
     <footer class="mt-auto text-white-50">
         <a class="nav-link active" aria-current="page" href="/employee">Back</a>
