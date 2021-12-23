@@ -78,8 +78,24 @@
                 </form>
             </div>
         </div>
-        <h3 th:if="${title=='Remove'}">Hello remove</h3>
-        <h3 th:if="${title=='Edit'}">Hello edit</h3>
+        <h3 th:if="${title=='Remove'}">
+            <div th:each="el : ${additionalservices}" class="alert alert-info mt-2">
+                <h1 th:text="${el.type_service}"></h1>
+                <p th:text="${el.price}"></p>
+                <form th:action="'/removeServ/'+${el.id_service}" method="post">
+                <button type="submit" class="btn btn-warning">Delete service</button>
+                </form>
+            </div>
+        </h3>
+        <h3 th:if="${title=='Edit'}">
+            <div th:each="el : ${additionalservices}" class="alert alert-info mt-2">
+                <h1 th:text="${el.type_service}"></h1>
+                <p th:text="${el.price}"></p>
+                <form th:action="'/editServ/'+${el.id_service}" method="post">
+                    <button type="submit" class="btn btn-warning">Edit service</button>
+                </form>
+            </div>
+        </h3>
     </main>
 
     <footer class="mt-auto text-white-50">

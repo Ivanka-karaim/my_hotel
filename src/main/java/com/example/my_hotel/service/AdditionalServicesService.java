@@ -31,6 +31,11 @@ public class AdditionalServicesService {
         return parsingAdditionalServicesInAdditionalServicesDTO(additionalServicesList);
     }
 
+
+public void deleteAdditionalService(int id ) {
+    additionalServicesRepository.deleteById(id);
+}
+
     private List<AdditionalServicesDTO> parsingAdditionalServicesInAdditionalServicesDTO(List<AdditionalServices> list) {
         List<AdditionalServicesDTO> additionalServicesDTOS = new ArrayList<>();
 
