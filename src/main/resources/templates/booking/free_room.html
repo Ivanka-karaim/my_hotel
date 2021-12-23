@@ -20,10 +20,6 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
-        <!--            <a class="navbar-brand" href="/">General</a>-->
-        <!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
-        <!--                <span class="navbar-toggler-icon"></span>-->
-        <!--            </button>-->
     </div>
 </nav>
 <div class="container" align="center">
@@ -32,20 +28,20 @@
     <p>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></p>
     <p class="mt-5"> <strong th:text="${booking.getCount_people()}" ></strong></p><br>
     <div th:each="el: ${rooms}">
-    <div class="media">
-        <div class="media-left">
-            <img th:src="@{img/f1.jpg}" class="media-object" style="width:500px">
+        <div class="media">
+            <div class="media-left">
+                <img th:src="@{${el.image}}" class="media-object" style="width:500px">
+            </div>
+            <div class="media-body">
+                <h2 class="media-heading" th:text="${el.classification_room}"></h2>
+                <p>Price: <strong th:text="${el.cost}"></strong></p>
+                <p>Floor: <strong th:text="${el.floor}"></strong></p>
+                <p>Number of seats: <strong th:text="${el.number_beds}"></strong></p>
+                <p><strong th:text="${el.depiction}"></strong></p>
+                <a th:href="'/booking/'+${el.id_room}" class="btn btn-primary">Booking this room</a>
+            </div>
         </div>
-        <div class="media-body">
-            <h2 class="media-heading" th:text="${el.classification_room}"></h2>
-            <p>Price: <strong th:text="${el.cost}"></strong></p>
-            <p>Floor: <strong th:text="${el.floor}"></strong></p>
-            <p>Number of seats: <strong th:text="${el.number_beds}"></strong></p>
-            <p><strong th:text="${el.depiction}"></strong></p>
-            <a th:href="'/booking/'+${el.id_room}" class="btn btn-primary">Booking this room</a>
-        </div>
-    </div>
-    <hr>
+        <hr>
     </div>
 
 </div>

@@ -26,20 +26,26 @@ public class BookingController {
     private Date date_2;
     private int count_1;
     private Room room_1;
-
+    private boolean employee;
 
     @GetMapping("/booking")
     public String main(Model model) {
+        employee=false;
         model.addAttribute("booking", new Booking());
         model.addAttribute("error","");
         return "booking";
     }
-    @PostMapping("/booking")
+    @GetMapping("/booking1")
+    public String main1(Model model) {
+        employee=true;
+        model.addAttribute("booking", new Booking());
+        model.addAttribute("error","");
+        return "booking";
+    }
+    @PostMapping("/booking{id}")
     public String search(Booking booking, Model model) {
         LocalDate date1 = LocalDate.ofInstant(booking.getDate_arrival().toInstant(), ZoneId.systemDefault());
         LocalDate date2 = LocalDate.ofInstant(booking.getDate_departure().toInstant(), ZoneId.systemDefault());
-        System.out.println(date1);
-        System.out.println(date2);
         date_1=booking.getDate_arrival();
         date_2=booking.getDate_departure();
         count_1=booking.getCount_people();
@@ -49,16 +55,10 @@ public class BookingController {
         }
         else {
             model.addAttribute("booking", booking);
-//            List<RoomDTO> rooms = roomService.getAllRooms();
-            System.out.println("85");
             int days = Days.daysBetween(new DateTime(date_1), new DateTime(date_2)).getDays();
-
             List<RoomDTO> rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
-//            for (RoomDTO room: rooms) {
-//
-//            }
             for(RoomDTO r:rooms) {
-                System.out.println(r.getId_classification());
+                r.setCost(r.getCost()*days);
             }
             model.addAttribute("rooms", rooms);
             return "booking/free_room";
@@ -72,9 +72,8 @@ public class BookingController {
         booking.setDate_arrival(date_1);
         booking.setDate_departure(date_2);
         booking.setCount_people(count_1);
-
-
         model.addAttribute("booking", booking);
+
         return "booking/form";
     }
     @PostMapping("/booking/{id}")
@@ -85,6 +84,13 @@ public class BookingController {
         booking.setRoom(room_1);
         System.out.println();
         bookingService.addBooking(booking);
-        return "general";
+        model.addAttribute("booking", booking);
+        if (employee) {
+            model.addAttribute("role", "employee");
+        }
+        else {
+            model.addAttribute("role", "client");
+        }
+        return "booking/done";
     }
 }

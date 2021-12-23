@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-
+import javax.validation.constraints.Size;
 
 
 @Builder
@@ -28,8 +28,8 @@ public class Room {
     @Min(1)
     private int floor;
 
-    @Lob
-    private byte[] image;
+    @Size(max=20)
+    private String image;
 
     private String depiction;
 
