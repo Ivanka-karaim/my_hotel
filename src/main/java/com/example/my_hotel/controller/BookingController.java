@@ -2,7 +2,9 @@ package com.example.my_hotel.controller;
 
 import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.Booking;
+import com.example.my_hotel.model.Classificationroom;
 import com.example.my_hotel.model.Room;
+import com.example.my_hotel.repository.BookingRepository;
 import com.example.my_hotel.service.BookingService;
 import com.example.my_hotel.service.RoomService;
 import org.joda.time.DateTime;
@@ -22,6 +24,8 @@ public class BookingController {
     private RoomService roomService;
     @Autowired
     private BookingService bookingService;
+    @Autowired
+    private BookingRepository bookingRepository;
     private Date date_1;
     private Date date_2;
     private int count_1;
@@ -46,6 +50,7 @@ public class BookingController {
     public String search(Booking booking, Model model) {
         LocalDate date1 = LocalDate.ofInstant(booking.getDate_arrival().toInstant(), ZoneId.systemDefault());
         LocalDate date2 = LocalDate.ofInstant(booking.getDate_departure().toInstant(), ZoneId.systemDefault());
+        LocalDate now = LocalDate.now();
         date_1=booking.getDate_arrival();
         date_2=booking.getDate_departure();
         count_1=booking.getCount_people();
@@ -53,10 +58,22 @@ public class BookingController {
             model.addAttribute("error","Error");
             return "booking";
         }
+        else if(date1 == date2) {
+            model.addAttribute("error","Error");
+            return "booking";
+        }
+        else if (now.isAfter(date1)) {
+            model.addAttribute("error","Error");
+            return "booking";
+        }
         else {
             model.addAttribute("booking", booking);
             int days = Days.daysBetween(new DateTime(date_1), new DateTime(date_2)).getDays();
             List<RoomDTO> rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
+            if (rooms.isEmpty()) {
+                model.addAttribute("error","Error");
+                return "booking";
+            }
             for(RoomDTO r:rooms) {
                 r.setCost(r.getCost()*days);
                 System.out.println(r.getId_room());
@@ -93,5 +110,33 @@ public class BookingController {
             model.addAttribute("role", "client");
         }
         return "booking/done";
+    }
+    @GetMapping("/viewBook")
+    public String view_book(Model model) {
+//        List<Booking> booking = bookingService.getAllBooks();
+        List<Booking> booking = bookingRepository.findAll();
+        model.addAttribute("title", "View");
+        model.addAttribute("booking", booking);
+        return "bookings";
+    }
+    @GetMapping("/removeBook")
+    public String remove_book(Model model) {
+        List<Booking> booking = bookingService.getAllBooks();
+        model.addAttribute("title", "Remove");
+        model.addAttribute("booking", booking);
+        return "bookings";
+    }
+    @PostMapping("/removeBook")
+    public String remove_book(@RequestParam int id_booking, Model model) {
+        Booking booking = bookingRepository.getById(id_booking).get();
+        model.addAttribute("booking", booking);
+        model.addAttribute("title", "Remove");
+        return "bookings";
+    }
+    @PostMapping("/removeBook/{id_booking}")
+    public String removes_book(@PathVariable(value = "id_booking") int id_booking, Model model) {
+        Booking booking= bookingRepository.findById(id_booking).orElseThrow();
+        bookingRepository.delete(booking);
+        return "redirect:/viewBook";
     }
 }
