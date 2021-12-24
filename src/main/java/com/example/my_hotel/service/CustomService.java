@@ -29,12 +29,26 @@ public class CustomService {
         return parsingCustomInCustomDTO(customList);
     }
 
-//    public List<CustomDTO> getAllData(){
-//        List<Custom> customList = customRepository.joinCustomBooking();
-//        //List<Booking> bookingList =
-//
-//        return parsingCustomInCustomDTO(customList);
-//    }
+    public float getCostServices(int id_order){
+        float cost = 0f;
+        List<Float> priceService = customRepository.getPriceServicesByIdCustom(id_order);
+        if (!priceService.isEmpty()){
+            for (Float priceS: priceService){
+                cost+=priceS;
+            }
+        }
+        return cost;
+    }
+
+    public float getCost(int id_order){
+        float cost = 0f;
+        List<Float> priceRoom = customRepository.getPriceRoomByIdCustom(id_order);
+        for (Float priceR: priceRoom){
+            cost+=priceR;
+        }
+        cost+=getCostServices(id_order);
+        return cost;
+    }
 
 
 

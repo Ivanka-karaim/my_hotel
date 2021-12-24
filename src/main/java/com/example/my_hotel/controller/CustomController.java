@@ -50,9 +50,11 @@ public class CustomController {
     @GetMapping("/view/{id_order}")
     public String view(@PathVariable(value = "id_order") int id_order, Model model) {
         Custom custom = customRepository.findById(id_order).orElseThrow();
+        float total_price = customService.getCostServices(id_order);
         model.addAttribute("title", "View");
         model.addAttribute("custom", custom);
         model.addAttribute("type", "More");
+        model.addAttribute("total_price", total_price);
         return "custom";
     }
 
