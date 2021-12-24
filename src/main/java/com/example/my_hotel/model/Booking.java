@@ -38,5 +38,6 @@ public class Booking {
     private String phone_number;
 
     private int count_people;
+    private float price;
 
 }

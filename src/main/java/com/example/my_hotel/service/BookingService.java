@@ -25,8 +25,8 @@ public class BookingService {
                 .name(booking.getName())
                 .phone_number(booking.getPhone_number())
                 .count_people(booking.getCount_people())
+                .price(booking.getPrice())
                 .build();
-
         bookingRepository.save(book);
         return true;
 

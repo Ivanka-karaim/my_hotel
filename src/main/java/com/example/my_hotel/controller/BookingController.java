@@ -31,6 +31,8 @@ public class BookingController {
     private int count_1;
     private Room room_1;
     private boolean employee;
+    private float price;
+    List<RoomDTO> rooms;
 
     @GetMapping("/booking")
     public String main(Model model) {
@@ -69,7 +71,7 @@ public class BookingController {
         else {
             model.addAttribute("booking", booking);
             int days = Days.daysBetween(new DateTime(date_1), new DateTime(date_2)).getDays();
-            List<RoomDTO> rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
+            rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
             if (rooms.isEmpty()) {
                 model.addAttribute("error","Sorry, there are no available rooms for the given dates...");
                 return "booking";
@@ -87,11 +89,17 @@ public class BookingController {
         Booking booking = new Booking();
         booking.setRoom(roomService.getById(id));
         room_1=booking.getRoom();
+        for (RoomDTO r: rooms) {
+            if(r.getId_room()==room_1.getId_room()) {
+                price=r.getCost();
+                System.out.println(price);
+            }
+        }
         booking.setDate_arrival(date_1);
         booking.setDate_departure(date_2);
         booking.setCount_people(count_1);
+        booking.setPrice(price);
         model.addAttribute("booking", booking);
-
         return "booking/form";
     }
     @PostMapping("/booking/{id}")
@@ -100,6 +108,9 @@ public class BookingController {
         booking.setDate_departure(date_2);
         booking.setCount_people(count_1);
         booking.setRoom(room_1);
+        System.out.println(price);
+        booking.setPrice(price);
+        System.out.println(booking.getPrice());
         System.out.println();
         bookingService.addBooking(booking);
         model.addAttribute("booking", booking);
