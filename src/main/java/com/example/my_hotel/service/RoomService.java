@@ -55,7 +55,6 @@ public class RoomService {
                 .classification_room(room.getClassificationroom().getClassification_room())
                 .cost(room.getClassificationroom().getCost())
                 .number_beds((room.getClassificationroom().getNumber_beds()))
-                .number_rooms(room.getClassificationroom().getNumber_rooms())
                 .build();
 
     }
@@ -72,7 +71,6 @@ public class RoomService {
                     .classification_room(room.getClassificationroom().getClassification_room())
                     .cost(room.getClassificationroom().getCost())
                     .number_beds((room.getClassificationroom().getNumber_beds()))
-                    .number_rooms(room.getClassificationroom().getNumber_rooms())
                     .build());
         }
 

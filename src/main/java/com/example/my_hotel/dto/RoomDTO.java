@@ -22,5 +22,4 @@ public class RoomDTO {
     private String classification_room;
     private float cost;
     private int number_beds;
-    private int number_rooms;
 }

@@ -28,9 +28,11 @@ public class Classificationroom {
     @Min(1)
     private int number_beds;
 
-    @Min(1)
-    private int number_rooms;
-
+    public Classificationroom(String classification_room, float cost, int number_beds) {
+        this.classification_room=classification_room;
+        this.cost=cost;
+        this.number_beds=number_beds;
+    }
     public String toString() {
         return  this.classification_room + "', Cost: '" + this.cost + "', Number beds: '" + this.number_beds + "'";
     }
