@@ -12,15 +12,19 @@
 </head>
 <body>
 <div th:insert="blocks/header :: header"> </div>
-<div th:each="cl : ${clients}"class="alert alert-info mt-2">
-<!--    <h3 th:text="${cl.email}"/>-->
-    <div th:each="re : ${responses}"class="alert alert-info mt-2">
-            <h3 th:text="${cl.email}"/>
-            <h4 th:text="${re.mark}"/>
-            <p th:text="${re.comment}"/>
-    </div>
 
-</div>
+
+<!--<div th:each="cl : ${clients}"class="alert alert-info mt-2">-->
+<!--&lt;!&ndash;    <h3 th:text="${cl.email}"/>&ndash;&gt;-->
+<!--    <div th:each="re : ${responses}"class="alert alert-info mt-2">-->
+<!--            <h3 th:text="${cl.email}"/>-->
+<!--            <h4 th:text="${re.mark}"/>-->
+<!--            <p th:text="${re.comment}"/>-->
+<!--    </div>-->
+
+<!--</div>-->
+
+
 <!--&lt;!&ndash;    <a th:href="'/response/'+${re.id_response}">Детальніше</a>&ndash;&gt;-->
 
 <!--<ol class="list-group list-group-numbered">-->
