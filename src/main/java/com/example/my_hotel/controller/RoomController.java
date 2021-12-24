@@ -1,6 +1,7 @@
 package com.example.my_hotel.controller;
 
 import com.example.my_hotel.dto.RoomDTO;
+import com.example.my_hotel.model.Classificationroom;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.repository.ClassificationroomRepository;
 import com.example.my_hotel.repository.RoomRepository;
@@ -37,6 +38,8 @@ public class RoomController {
     @GetMapping("/addRoom")
     public String adds(Model model) {
         model.addAttribute("title", "Add");
+        List<Classificationroom> classs = classificationroomRepository.findAll();
+        model.addAttribute("class", classs);
         return "rooms";
     }
 

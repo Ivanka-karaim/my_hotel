@@ -76,8 +76,13 @@
                 <form action="/addRoom" method="post">
                     <input type="text" name="floor" placeholder="Enter floor" class="form-control"><br>
                     <input type="text" name="depiction" placeholder="Enter depiction" class="form-control"><br>
-                    <input type="text" name="id_classification" placeholder="Enter id_classification" class="form-control"><br>
-                    <input type="text" name="image" placeholder="Enter name image" class="form-control"><br>
+                    <select id="id_classification" name="id_classification" style="width: 1300px" align="left">
+                        <div th:each="el: ${class}">
+                            <option th:value="${el.id_classification}" th:text="${el.classification_room} + ' '+ ${el.number_beds} +' seats'"></option>
+                        </div>
+                    </select>
+<!--                    <input type="text" name="id_classification" placeholder="Enter id_classification" class="form-control"><br>-->
+                    <br><input type="text" name="image" placeholder="Enter name image" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Add new room</button>
                 </form>
             </div>
