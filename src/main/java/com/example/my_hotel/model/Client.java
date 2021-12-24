@@ -47,4 +47,7 @@ public class Client {
     @JoinColumn(name ="id_response")
     private Response id_response ;
 
+
+    public Client(String surname, String name, String patronymic, String phone_number, String email, int bonus_card) {
+    }
 }

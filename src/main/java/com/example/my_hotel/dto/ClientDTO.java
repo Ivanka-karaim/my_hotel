@@ -20,6 +20,7 @@ public class ClientDTO {
     private String surname;
     private String name;
     private String patronymic;
+    private String phone_number;
     private String email;
     private int id_response;
     private int bonus_card;
