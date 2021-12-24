@@ -30,4 +30,30 @@ public class Schedules {
     @NotNull
     @DateTimeFormat(pattern = "yyyy-mm-dd")
     private Date dateend;
+//    @NotNull
+//    private int id_schedule;
+//
+//    @NotNull
+//    private int id_week = 1;
+//
+//    @NotNull
+//    boolean sun = false;
+//
+//    @NotNull
+//    boolean mon = false;
+//
+//    @NotNull
+//    boolean tue = false;
+//
+//    @NotNull
+//    boolean wed = false;
+//
+//    @NotNull
+//    boolean thu = false;
+//
+//    @NotNull
+//    boolean fri = false;
+//
+//    @NotNull
+//    boolean sat = false;
 }
