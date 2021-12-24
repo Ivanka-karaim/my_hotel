@@ -20,7 +20,7 @@ public class ClientService {
     @Autowired
     private ClientRepository clientRepository;
 
-    public Client getById(int id) {
+    public Client getById(String id) {
         Optional<Client> client_op =clientRepository.findById(id);
         return client_op.orElseGet(Client::new);
     }
@@ -31,7 +31,7 @@ public class ClientService {
     }
 
 
-    public void deleteClient(int id ) {
+    public void deleteClient(String id ) {
         clientRepository.deleteById(id);
     }
 

@@ -1,104 +1,229 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en" class="h-100" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
+    <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.88.1">
+    <title th:text="${title}"></title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
+
+
+
+    <!-- Bootstrap core CSS -->
+    <link href="/docs/5.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
+    <!-- Favicons -->
+    <link rel="apple-touch-icon" href="/docs/5.1/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
+    <link rel="manifest" href="/docs/5.1/assets/img/favicons/manifest.json">
+    <link rel="mask-icon" href="/docs/5.1/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
+    <link rel="icon" href="/docs/5.1/assets/img/favicons/favicon.ico">
+    <meta name="theme-color" content="#7952b3">
+
+
     <style>
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: black;
-}
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
 
-* {
-    box-sizing: border-box;
-}
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
-/* Add padding to containers */
-.container {
-    padding: 16px;
-    background-color: white;
-}
 
-/* Full-width input fields */
-input[type=text], input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-}
-
-input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-}
-
-/* Overwrite default styles of hr */
-hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-}
-
-/* Set a style for the submit button */
-.registerbtn {
-    background-color: #4CAF50;
-    color: white;
-    padding: 16px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
-    width: 100%;
-    opacity: 0.9;
-}
-
-.registerbtn:hover {
-    opacity: 1;
-}
-
-/* Add a blue text color to links */
-a {
-    color: dodgerblue;
-}
-
-/* Set a grey background color and center the text of the "sign in" section */
-.signin {
-    background-color: #f1f1f1;
-    text-align: center;
-}
-</style>
+    <!-- Custom styles for this template -->
+    <link href="cover.css" rel="stylesheet">
 </head>
-<body>
+<body class="d-flex h-100 text-center text-white bg-dark">
 
-<form action="/action_page.php">
-    <div class="container">
-        <h1>Register new client</h1>
-        <p>Please fill in this form to create an account.</p>
-        <hr>
-        <label for="surname"><b>Surname</b></label>
-        <input type="text" placeholder="Enter Surname" name="surname" required>
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
+    <header class="mb-auto">
+        <div>
+            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+            <h3 class="float-md-start mb-0">Client</h3>
+            <nav class="nav nav-masthead justify-content-center float-md-end">
+                <a class="nav-link active" aria-current="page" href="/viewClient">View</a>
+                <a class="nav-link" href="/addClient">Add</a>
+                <a class="nav-link" href="/removeClient">Remove</a>
+                <a class="nav-link" href="/editClient">Edit</a>
+            </nav>
+        </div>
+    </header>
+    <main class="px-3">
+        <div th:if="${title=='View'}" >
+            <div th:each="el : ${clients}" class="alert alert-info mt-2">
+                <h1 th:text="${el.IPN}"></h1>
+                <h1 th:text="${el.surname}"></h1>
+                <h1 th:text="${el.name}"></h1>
+                <h1 th:text="${el.patronymic}"></h1>
+                <p th:text="${el.phone_number}"></p>
+                <p th:text="${el.email}"></p>
+                <p th:text="${el.bonus_card}"></p>
+            </div>
+        </div>
+        <div th:if="${title=='Add'}">
+            <div class="container mt-5">
+                <h1>Add client</h1>
+                <form action="/addClient" method="post">
+                    <input type="text" name="IPN" placeholder="Enter IPN" class="form-control"><br>
+                    <input type="text" name="surname" placeholder="Enter Surname" class="form-control"><br>
+                    <input type="text" name="name" placeholder="Enter Name" class="form-control"><br>
+                    <input type="text" name="patronymic" placeholder="Enter Patronymic" class="form-control"><br>
+                    <input type="text" name="phone_number" placeholder="Enter Phone number" class="form-control"><br>
+                    <input type="text" name="email" placeholder="Enter Email" class="form-control"><br>
+                    <button type="submit" class="btn btn-success">Add new client</button>
+                </form>
+        </div>
+        </div>
+        <h3 th:if="${title=='Remove'}">
+            <div th:each="el : ${clients}" class="alert alert-info mt-2">
+                <h1 th:text="${el.IPN}"></h1>
+                <h1 th:text="${el.surname}"></h1>
+                <h1 th:text="${el.name}"></h1>
+                <h1 th:text="${el.patronymic}"></h1>
+                <p th:text="${el.phone_number}"></p>
+                <p th:text="${el.email}"></p>
+                <form th:action="'/removeClient/'+${el.IPN}" method="post">
+                    <button type="submit" class="btn btn-warning">Delete client</button>
+                </form>
+            </div>
+        </h3>
+        <h3 th:if="${title=='Edit'}">
+            <div th:each="el : ${clients}" class="alert alert-info mt-2">
+                <h1 th:text="${el.IPN}"></h1>
+                <h1 th:text="${el.surname}"></h1>
+                <h1 th:text="${el.name}"></h1>
+                <h1 th:text="${el.patronymic}"></h1>
+                <p th:text="${el.phone_number}"></p>
+                <p th:text="${el.email}"></p>
+                <form th:action="'/edit_client/'+${el.IPN}" method="get">
+                    <button type="submit" class="btn btn-warning">Edit client</button>
+                </form>
+            </div>
+        </h3>
+    </main>
 
-        <label for="name"><b>Name</b></label>
-        <input type="text" placeholder="Enter Name" name="name" required>
-
-        <label for="patronymic"><b>Patronymic</b></label>
-        <input type="text" placeholder="Enter Patronymic" name="patronymic" required>
-
-        <label for="phone_number"><b>Phone number</b></label>
-        <input type="text" placeholder="Enter Phone number" name="phone_number" required>
-
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-
-
-        <hr>
-
-        <button type="submit" class="registerbtn"><a href="/clientregister">Register new client</a></button>
-    </div>
-
-    <div class="container signin">
-        <p>Does the customer already have an account? <a href="/client">Go to his account</a>.</p>
-    </div>
-</form>
+    <footer class="mt-auto text-white-50">
+        <a class="nav-link active" aria-current="page" href="/employee">Back</a>
+    </footer>
+</div>
 
 </body>
 </html>
+
+
+<!--<!DOCTYPE html>-->
+<!--<html>-->
+<!--<head>-->
+<!--    <meta name="viewport" content="width=device-width, initial-scale=1">-->
+<!--    <style>-->
+<!--body {-->
+<!--    font-family: Arial, Helvetica, sans-serif;-->
+<!--    background-color: black;-->
+<!--}-->
+
+<!--* {-->
+<!--    box-sizing: border-box;-->
+<!--}-->
+
+<!--/* Add padding to containers */-->
+<!--.container {-->
+<!--    padding: 16px;-->
+<!--    background-color: white;-->
+<!--}-->
+
+<!--/* Full-width input fields */-->
+<!--input[type=text], input[type=password] {-->
+<!--    width: 100%;-->
+<!--    padding: 15px;-->
+<!--    margin: 5px 0 22px 0;-->
+<!--    display: inline-block;-->
+<!--    border: none;-->
+<!--    background: #f1f1f1;-->
+<!--}-->
+
+<!--input[type=text]:focus, input[type=password]:focus {-->
+<!--    background-color: #ddd;-->
+<!--    outline: none;-->
+<!--}-->
+
+<!--/* Overwrite default styles of hr */-->
+<!--hr {-->
+<!--    border: 1px solid #f1f1f1;-->
+<!--    margin-bottom: 25px;-->
+<!--}-->
+
+<!--/* Set a style for the submit button */-->
+<!--.registerbtn {-->
+<!--    background-color: #4CAF50;-->
+<!--    color: white;-->
+<!--    padding: 16px 20px;-->
+<!--    margin: 8px 0;-->
+<!--    border: none;-->
+<!--    cursor: pointer;-->
+<!--    width: 100%;-->
+<!--    opacity: 0.9;-->
+<!--}-->
+
+<!--.registerbtn:hover {-->
+<!--    opacity: 1;-->
+<!--}-->
+
+<!--/* Add a blue text color to links */-->
+<!--a {-->
+<!--    color: dodgerblue;-->
+<!--}-->
+
+<!--/* Set a grey background color and center the text of the "sign in" section */-->
+<!--.signin {-->
+<!--    background-color: #f1f1f1;-->
+<!--    text-align: center;-->
+<!--}-->
+<!--</style>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--<form action="/action_page.php">-->
+<!--    <div class="container">-->
+<!--        <h1>Register new client</h1>-->
+<!--        <p>Please fill in this form to create an account.</p>-->
+<!--        <hr>-->
+<!--        <label for="surname"><b>Surname</b></label>-->
+<!--        <input type="text" placeholder="Enter Surname" name="surname" required>-->
+
+<!--        <label for="name"><b>Name</b></label>-->
+<!--        <input type="text" placeholder="Enter Name" name="name" required>-->
+
+<!--        <label for="patronymic"><b>Patronymic</b></label>-->
+<!--        <input type="text" placeholder="Enter Patronymic" name="patronymic" required>-->
+
+<!--        <label for="phone_number"><b>Phone number</b></label>-->
+<!--        <input type="text" placeholder="Enter Phone number" name="phone_number" required>-->
+
+<!--        <label for="email"><b>Email</b></label>-->
+<!--        <input type="text" placeholder="Enter Email" name="email" required>-->
+
+
+<!--        <hr>-->
+
+<!--        <button type="submit" class="registerbtn"><a href="/addClient">Register new client</a></button>-->
+<!--    </div>-->
+
+<!--    <div class="container signin">-->
+<!--        <p>Does the customer already have an account? <a href="/client">Go to his account</a>.</p>-->
+<!--    </div>-->
+<!--</form>-->
+
+<!--</body>-->
+<!--</html>-->

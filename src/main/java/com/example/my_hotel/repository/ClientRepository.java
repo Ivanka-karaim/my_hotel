@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
-public interface ClientRepository extends CrudRepository<Client, Integer> {
+public interface ClientRepository extends CrudRepository<Client, String> {
     List<Client> findAll();
 //    @Query ("SELECT * FROM response INNER JOIN client using(id_response)");
 //    List<Client> findIdResponse(@Param(id_response))

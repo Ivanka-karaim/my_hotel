@@ -18,7 +18,6 @@ import javax.validation.constraints.Size;
 public class Client {
     @Id
     @Size(max=10)
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String IPN;
 
     @NotNull
@@ -40,7 +39,7 @@ public class Client {
     @NotNull
     @Size(max=30)
     private String email;
-    @NotNull
+
     private int  bonus_card;
 
     @ManyToOne
@@ -48,6 +47,12 @@ public class Client {
     private Response id_response ;
 
 
-    public Client(String surname, String name, String patronymic, String phone_number, String email, int bonus_card) {
+    public Client(String IPN, String surname, String name, String patronymic, String phone_number, String email) {
+        this.IPN=IPN;
+        this.surname=surname;
+        this.name=name;
+        this.patronymic=patronymic;
+        this.phone_number=phone_number;
+        this.email=email;
     }
 }

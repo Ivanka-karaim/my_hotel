@@ -37,9 +37,9 @@ public class ClientController {
 
     @GetMapping("/viewClient")
     public String view(Model model) {
-        List<ClientDTO> client = clientService.getAllClient;
+        List<ClientDTO> client = clientService.getAllClient();
         model.addAttribute("title", "View");
-        model.addAttribute("client", client);
+        model.addAttribute("clients", client);
         return "client";
     }
 
@@ -53,7 +53,7 @@ public class ClientController {
     public String remove(Model model) {
         List<ClientDTO> client = clientService.getAllClient();
         model.addAttribute("title", "Remove");
-        model.addAttribute("client", client);
+        model.addAttribute("clients", client);
         return "client";
     }
 
@@ -61,58 +61,58 @@ public class ClientController {
     public String edit (Model model) {
         List<ClientDTO> client = clientService.getAllClient();
         model.addAttribute("title", "Edit");
-        model.addAttribute("client", client);
+        model.addAttribute("clients", client);
         return "client";
     }
     @PostMapping("/addClient")
-    public String add(@RequestParam String surname,@RequestParam String name,@RequestParam String patronymic,@RequestParam String phone_number,@RequestParam String email, @RequestParam int bonus_card) {
-        Client client = new Client(surname,name,patronymic,phone_number,email,bonus_card);
+    public String add(@RequestParam String IPN, @RequestParam String surname,@RequestParam String name,@RequestParam String patronymic,@RequestParam String phone_number,@RequestParam String email) {
+        Client client = new Client(IPN,surname,name,patronymic,phone_number,email);
         clientRepository.save(client);
+        System.out.println(242432);
         return "redirect:/viewClient";
     }
 
     @PostMapping("/removeClient/{IPN}")
-    public String remove(@PathVariable(value = "IPN") int IPN, Model model) {
+    public String remove(@PathVariable(value = "IPN") String IPN, Model model) {
         Client client = clientRepository.findById(IPN).orElseThrow();
         clientRepository.delete(client);
         return "redirect:/viewClient";
     }
 
     @PostMapping("/edit_client/{IPN}")
-    public String edit (@PathVariable(value = "IPN") int IPN, String surname, String name,String patronymic, String phone_number, String email, int bonus_card ) {
+    public String edit (@PathVariable(value = "IPN") String IPN, String surname, String name,String patronymic, String phone_number, String email) {
         Client client = clientRepository.findById(IPN).orElseThrow();
         client.setSurname(surname);
         client.setName(name);
         client.setPatronymic(patronymic);
         client.setPhone_number(phone_number);
         client.setEmail(email);
-        client.setBonus_card(bonus_card);
         clientRepository.save(client);
         return "redirect:/viewClient";
     }
 
     @GetMapping("/edit_client/{IPN}")
-    public String edit_client (@PathVariable(value = "IPN") int IPN, Model model) {
+    public String edit_client (@PathVariable(value = "IPN") String IPN, Model model) {
         if (!clientRepository.existsById(IPN)){
             return "/editClient";
         }
         Optional<Client> client = clientRepository.findById(IPN);
-        model.addAttribute("client", client.get());
+        model.addAttribute("clients", client.get());
         return "edit_client";
     }
 
-    @GetMapping("/client")
-    public String client(Model model) {
-        Iterable<Client> clients=clientRepository.findAll();
-        model.addAttribute("clients", clients);
-        return "clients";
-    }
-    @GetMapping("/clientregister")
-    public String clientregister(Model model) {
-        Iterable<Client> clientregister=clientRepository.findAll();
-        model.addAttribute("clientregister", clientregister);
-        return "clientregister";
-    }
+//    @GetMapping("/client")
+//    public String client(Model model) {
+//        Iterable<Client> clients=clientRepository.findAll();
+//        model.addAttribute("clients", clients);
+//        return "clients";
+//    }
+//    @GetMapping("/clientregister")
+//    public String clientregister(Model model) {
+//        Iterable<Client> clientregister=clientRepository.findAll();
+//        model.addAttribute("clientregister", clientregister);
+//        return "clientregister";
+//    }
 //    @GetMapping("/clienlogin")
 //    public String clients(Model model) {
 //        Iterable<Client> clientlogin=clientRepository.findAll();
