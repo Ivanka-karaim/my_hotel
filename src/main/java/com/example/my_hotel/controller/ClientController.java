@@ -107,10 +107,16 @@ public class ClientController {
         model.addAttribute("clients", clients);
         return "clients";
     }
-    @GetMapping("/cliens")
-    public String clients(Model model) {
-        Iterable<Client> clientlogin=clientRepository.findAll();
-        model.addAttribute("clientlogin", clientlogin);
-        return "clientlogin";
+    @GetMapping("/clientregister")
+    public String clientregister(Model model) {
+        Iterable<Client> clientregister=clientRepository.findAll();
+        model.addAttribute("clientregister", clientregister);
+        return "clientregister";
     }
+//    @GetMapping("/clienlogin")
+//    public String clients(Model model) {
+//        Iterable<Client> clientlogin=clientRepository.findAll();
+//        model.addAttribute("clientlogin", clientlogin);
+//        return "clientlogin";
+//    }
 }

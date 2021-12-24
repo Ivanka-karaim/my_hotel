@@ -16,5 +16,8 @@ import java.util.Optional;
 public interface ClientRepository extends CrudRepository<Client, Integer> {
     List<Client> findAll();
 //    @Query ("SELECT * FROM response INNER JOIN client using(id_response)");
-//    List<Client> findIdResponse(@Param(id_re))
+//    List<Client> findIdResponse(@Param(id_response))
+
+//    @Query("SELECT Response FROM Response WHERE Response.id = (SELECT id_response FROM Client WHERE id=:number)")
+//    List<Response> findResponseById(@Param("number") int number);
 }
