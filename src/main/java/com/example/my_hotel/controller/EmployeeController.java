@@ -1,13 +1,11 @@
 package com.example.my_hotel.controller;
 
 import com.example.my_hotel.dto.RoomDTO;
-import com.example.my_hotel.model.Booking;
-import com.example.my_hotel.model.Employees;
-import com.example.my_hotel.model.Occupations;
-import com.example.my_hotel.model.Room;
+import com.example.my_hotel.model.*;
 import com.example.my_hotel.repository.EmployeesRepository;
 import com.example.my_hotel.repository.OccupationsRepository;
 import com.example.my_hotel.repository.RoomRepository;
+import com.example.my_hotel.service.CustomService;
 import com.example.my_hotel.service.RoomService;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class EmployeeController {
@@ -34,23 +29,38 @@ public class EmployeeController {
     @Autowired
     private OccupationsRepository occupationsRepository;
 
+    @Autowired
+    private CustomService customService;
+
     @GetMapping("/employee")
     public String employee(Model model) {
-        model.addAttribute("title", "Профіль");
+        model.addAttribute("title", "Menu");
         if (sessionId == null){
-            return "login";
+            return "redirect:/login";
+        }
+        //List <Occupations> privileged =
+        if (getEmployee().getId_occupation().isManagement()){
+            model.addAttribute("response", "True");
+            //TODO
+            //model.addAttribute("custom", "/view");
+            //model.addAttribute("view", "/viewServ");
+        } else {
+            model.addAttribute("response", null);
+            //TODO
+            //model.addAttribute("custom", "/employee/view");
+            //model.addAttribute("view", "/employee/viewServ");
         }
         return "employee";
         //return "employee-profile";
     }
 
 
-    @GetMapping("/employee/login")
+    @GetMapping("/login")
     public String login(Model model) {
         if (sessionId != null) {
             return "redirect:/employee";
         }
-        model.addAttribute("title", "Вхід");
+        model.addAttribute("title", "Log in");
         //model.addAttribute("email","");
         model.addAttribute("errorEmail", "");
         model.addAttribute("errorPass", "");
@@ -95,8 +105,47 @@ public class EmployeeController {
         }
     }
 
+    @GetMapping("/employee/schedule")
+    public String schedule(Model model) {
+        model.addAttribute("title", "Schedules");
+        if (sessionId == null){
+            return "redirect:/login";
+        }
+        Schedules schedule = getEmployee().getId_schedule();
+        //model.addAttribute("email","");;
+//        if(schedule == null){
+//            return "redirect:/employee";
+//        }
+//        Weeks weeks1 = schedule.getId_week1();
+//        Weeks weeks2 = schedule.getId_week2();
+
+        List <Boolean> week1 = new LinkedList<>();
+        List <Boolean> week2 = new LinkedList<>();
+        Weeks[] weeks = {schedule.getId_week1(), schedule.getId_week2()};
+        week1.add(weeks[0].isSun());
+        week1.add(weeks[0].isMon());
+        week1.add(weeks[0].isTue());
+        week1.add(weeks[0].isWed());
+        week1.add(weeks[0].isThu());
+        week1.add(weeks[0].isFri());
+        week1.add(weeks[0].isSat());
+
+        week2.add(weeks[1].isSun());
+        week2.add(weeks[1].isMon());
+        week2.add(weeks[1].isTue());
+        week2.add(weeks[1].isWed());
+        week2.add(weeks[1].isThu());
+        week2.add(weeks[1].isFri());
+        week2.add(weeks[1].isSat());
+
+        model.addAttribute("week1", week1);
+        model.addAttribute("week2", week2);
+        return "schedules";
+    }
+
     @GetMapping("/employee/profile")
     public String profile(Model model){
+        model.addAttribute("title", "Profile");
         if (sessionId == null){
             return "login";
         }
@@ -110,20 +159,20 @@ public class EmployeeController {
 //                employee = i;
 //            }
 //      }
-        Optional<Employees> opt;
-        try {
-            //System.out.println("\n\n\nId:" + sessionId + "\n\n\n");
-            opt = employeesRepository.findById(sessionId);
-            //System.out.println("\n\n\nId:" + opt.get().getId() + "\n\n\n");
-        }catch (IllegalArgumentException e){
-            return "general";
-        }
-        if(opt.isEmpty()){
-            return "general";
-        }
-
-        Employees employee = opt.get();
-
+//        Optional<Employees> opt;
+//        try {
+//            //System.out.println("\n\n\nId:" + sessionId + "\n\n\n");
+//            opt = employeesRepository.findById(sessionId);
+//            //System.out.println("\n\n\nId:" + opt.get().getId() + "\n\n\n");
+//        }catch (IllegalArgumentException e){
+//            return "general";
+//        }
+//        if(opt.isEmpty()){
+//            return "general";
+//        }
+//
+//        Employees employee = opt.get();
+        Employees employee = getEmployee();
         //model.addAttribute("employee", employee);
 //        System.out.println(employee.getFullname());
 //        System.out.println(employee.getSurname());
@@ -152,7 +201,39 @@ public class EmployeeController {
 
     @GetMapping("/employee/exit")
     public String exit(Model model){
+        model.addAttribute("title", "Exit");
         sessionId = null;
         return "general";
+    }
+
+    //TODO
+//    @GetMapping("/employee/viewCustom")
+//    public String viewCustom(Model model){
+//        model.addAttribute("title", "Customer");
+//        //sessionId = null;
+//        return "watch-custom";
+//    }
+
+    //TODO
+//    @GetMapping("/employee/viewService")
+//    public String viewService(Model model){
+//        model.addAttribute("title", "Services");
+//        //sessionId = null;
+//        return "general";
+//    }
+
+    public Employees getEmployee(){
+        Optional<Employees> opt;
+        try {
+            //System.out.println("\n\n\nId:" + sessionId + "\n\n\n");
+            opt = employeesRepository.findById(sessionId);
+            //System.out.println("\n\n\nId:" + opt.get().getId() + "\n\n\n");
+        }catch (IllegalArgumentException e){
+            return null;
+        }
+        if(opt.isEmpty()){
+            return null;
+        }
+        return opt.get();
     }
 }

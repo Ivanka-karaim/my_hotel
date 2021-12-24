@@ -6,30 +6,41 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
+import java.sql.Date;
 
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name="occupations")
-public class Occupations {
+@Table(name="weeks")
+public class Weeks {
     @Id
+    @NotNull
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    
-    @NotNull
-    @Size(max = 25)
-    private String occupation;
 
     @NotNull
-    @Min(0)
-    private float salary = 0;
+    boolean sun = false;
 
     @NotNull
-    private boolean management = false;
+    boolean mon = false;
+
+    @NotNull
+    boolean tue = false;
+
+    @NotNull
+    boolean wed = false;
+
+    @NotNull
+    boolean thu = false;
+
+    @NotNull
+    boolean fri = false;
+
+    @NotNull
+    boolean sat = false;
 }

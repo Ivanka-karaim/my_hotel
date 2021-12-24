@@ -23,11 +23,43 @@ public class Schedules {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date datebegin;
+//    @NotNull
+//    @DateTimeFormat(pattern = "yyyy-mm-dd")
+//    private Date datebegin;
+//
+//    @NotNull
+//    @DateTimeFormat(pattern = "yyyy-mm-dd")
+//    private Date dateend;
+//    @NotNull
+//    private int id_schedule;
+//
+    @ManyToOne
+    @JoinColumn(name = "id_week1")
+    private Weeks id_week1;
 
-    @NotNull
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date dateend;
+    @ManyToOne
+    @JoinColumn(name = "id_week2")
+    private Weeks id_week2;
+
+
+//    @NotNull
+//    boolean sun = false;
+//
+//    @NotNull
+//    boolean mon = false;
+//
+//    @NotNull
+//    boolean tue = false;
+//
+//    @NotNull
+//    boolean wed = false;
+//
+//    @NotNull
+//    boolean thu = false;
+//
+//    @NotNull
+//    boolean fri = false;
+//
+//    @NotNull
+//    boolean sat = false;
 }
