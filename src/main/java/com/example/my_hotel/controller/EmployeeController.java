@@ -210,6 +210,9 @@ public class EmployeeController {
 
     @GetMapping("/employee/colleagues")
     public String colleagues(Model model){
+        if (sessionId == null){
+            return "login";
+        }
         model.addAttribute("title", "Colleagues");
         List<Employees> employees = employeesRepository.findAll();
         model.addAttribute("employees", employees);
