@@ -107,4 +107,10 @@ public class ClientController {
         model.addAttribute("clients", clients);
         return "clients";
     }
+    @GetMapping("/cliens")
+    public String clients(Model model) {
+        Iterable<Client> clientlogin=clientRepository.findAll();
+        model.addAttribute("clientlogin", clientlogin);
+        return "clientlogin";
+    }
 }
