@@ -39,4 +39,16 @@ public class ResponseController {
         model.addAttribute("responses", responses);
         return "response";
     }
+    @GetMapping("/addResponse")
+    public String add(Model model) {
+        model.addAttribute("title", "Add");
+        return "response";
+    }
+    @PostMapping("/addResponse")
+    public String add(@RequestParam int mark, @RequestParam String comment) {
+        Response response = new Response(mark, comment);
+        responseRepository.save(response);
+        System.out.println(242432);
+        return "redirect:/response";
+    }
 }

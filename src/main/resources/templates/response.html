@@ -14,15 +14,61 @@
 <div th:insert="blocks/header :: header"> </div>
 
 
-<div th:each="cl : ${clients}" class="alert alert-info mt-2">
+<ol th:each="cl : ${clients}" class="alert alert-info mt-2">
 <!--    <h3 th:text="${cl.email}"/>-->
 <!--    <div th:each="re : ${responses}"class="alert alert-info mt-2">-->
             <h3 th:text="${cl.email}"/>
-            <h4 th:text="${cl.id_response.mark}"/>
+            <p th:if="${cl.id_response.mark==1}">
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+            </p>
+            <p th:if="${cl.id_response.mark==2}">
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+            </p>
+            <p th:if="${cl.id_response.mark==3}">
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+            </p>
+            <p th:if="${cl.id_response.mark==4}">
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+            </p>
+            <p th:if="${cl.id_response.mark==5}">
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
+            </p>
             <p th:text="${cl.id_response.comment}"/>
 <!--    </div>-->
+</ol>
+<div>
+    <button>
+<!--        <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />-->
+        <form action="/addResponse" method="post">
+            <input type="number" min=1 max=5 name="mark" placeholder="Enter mark" class="form-control" required=""><br>
+            <input type="text" name="comment" placeholder="Enter comment" class="form-control" required=""><br>
+            <a type="submit" class="btn btn-success">
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />
+                Add new review</a>
+<!--        <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />-->
 
+        </form>
+    </button>
 </div>
+<!--<div th:if="${title=='Add a review'}">-->
+<!--    <div class="container mt-5">-->
+<!--        <h1>Add client</h1>-->
+<!--        <form action="/addResponse" method="post">-->
+<!--            <input type="text" name="comment" placeholder="Enter commen" class="form-control"><br>-->
+<!--            <button type="submit" class="btn btn-success">Add new client</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
 
 
 <!--&lt;!&ndash;    <a th:href="'/response/'+${re.id_response}">Детальніше</a>&ndash;&gt;-->

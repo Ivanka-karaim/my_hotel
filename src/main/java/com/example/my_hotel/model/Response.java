@@ -26,4 +26,8 @@ public class Response {
     @Size(max=255)
     private String comment;
 
+    public Response(int mark, String comment) {
+        this.mark=mark;
+        this.comment=comment;
+    }
 }
