@@ -58,6 +58,25 @@
         autoclose: true
     });
 </script>
-<div th:insert="blocks/footer :: footer"></div>
+<footer class="text-muted py-5">
+        <!--contacts section-->
+        <div class="contacts">
+            <h3 class="sidebar-title"> Contacts</h3>
+            <div>
+                <span class="contact-type">C:</span>
+                <a href="tel:+380 97 13 372 11" class="contact-link">+380 97 13 372 11</a>
+            </div>
+            <div>
+                <span class="contact-type">E:</span>
+                <a href="mailto:dnkrupkoo@gmail.com"class="contact-link"> dnkrupkoo@gmail.com</a>
+            </div>
+        </div>
+        <div class="container">
+            <p class="float-end mb-1">
+                <a class="nav-link active" aria-current="page" href="/general">Back</a>
+            </p>
+        </div>
+
+</footer>
 </body>
 </html>

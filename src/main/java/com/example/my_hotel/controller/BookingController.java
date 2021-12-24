@@ -55,15 +55,15 @@ public class BookingController {
         date_2=booking.getDate_departure();
         count_1=booking.getCount_people();
         if (date1.isAfter(date2)) {
-            model.addAttribute("error","Error");
+            model.addAttribute("error","The date of eviction is specified earlier than the date of settlement...");
             return "booking";
         }
-        else if(date1 == date2) {
-            model.addAttribute("error","Error");
+        else if(date1.equals(date2)) {
+            model.addAttribute("error","You cannot book a room for less than 1 night...");
             return "booking";
         }
         else if (now.isAfter(date1)) {
-            model.addAttribute("error","Error");
+            model.addAttribute("error","You book a room on a date that has already passed...");
             return "booking";
         }
         else {
@@ -71,7 +71,7 @@ public class BookingController {
             int days = Days.daysBetween(new DateTime(date_1), new DateTime(date_2)).getDays();
             List<RoomDTO> rooms = roomService.getFreeRooms(booking.getDate_arrival(), booking.getDate_departure(), booking.getCount_people());
             if (rooms.isEmpty()) {
-                model.addAttribute("error","Error");
+                model.addAttribute("error","Sorry, there are no available rooms for the given dates...");
                 return "booking";
             }
             for(RoomDTO r:rooms) {

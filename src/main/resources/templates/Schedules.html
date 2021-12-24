@@ -59,7 +59,7 @@
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
                 <h1 class="fw-light">Schedules</h1>
-                <p class="lead text-muted">Your working schedule for this week.</p>
+                <p class="lead text-muted">Your working schedule for this month.</p>
             </div>
         </div>
     </section>
@@ -73,6 +73,7 @@
                         <tbody>
                         <thead class="cf">
                         <tr>
+                            <th>Weeks \ Days</th>
                             <th>Sunday</th>
                             <th>Monday</th>
                             <th>Tuesday</th>
@@ -82,19 +83,29 @@
                             <th>Saturday</th>
                         </tr>
                         </thead>
-                        <tr>
 <!--                            <span class="badge badge-pill badge-primary">Primary</span>-->
 <!--                            <span class="badge badge-pill badge-success">Success</span>-->
+<!--                            <td data-title="Sun"><button type="button" class="btn btn-success">Day off</button></td>-->
+<!--                            <td data-title="Mon"><button type="button" class="btn btn-primary">Working Day</button></td>-->
+<!--                            <td data-title="Tue"><button type="button" class="btn btn-primary">Working Day</button></td>-->
+<!--                            <td data-title="Wed"><button type="button" class="btn btn-primary">Working Day</button></td>-->
+<!--                            <td data-title="Thu"><button type="button" class="btn btn-primary">Working Day</button></td>-->
+<!--                            <td data-title="Fri"><button type="button" class="btn btn-success">Day off</button></td>-->
+<!--                            <td data-title="Sat"><button type="button" class="btn btn-success">Day off</button></td>-->
+                        <tr th:if="${week1 != null}">
+                            <td><p class="h4 font-weight-normal mb-3">Week 1</p></td>
+                            <span th:each = "el : ${week1}">
+                                <td><button th:text="${el} ? 'Working Day' : 'Day off'" type="button" class="btn" th:classappend="${el} ? btn-primary : btn-success"></button></td>
 
-                            <td data-title="Sun"><button type="button" class="btn btn-success">Day off</button></td>
-                            <td data-title="Mon"><button type="button" class="btn btn-primary">Working Day</button></td>
-                            <td data-title="Tue"><button type="button" class="btn btn-primary">Working Day</button></td>
-                            <td data-title="Wed"><button type="button" class="btn btn-primary">Working Day</button></td>
-                            <td data-title="Thu"><button type="button" class="btn btn-primary">Working Day</button></td>
-                            <td data-title="Fri"><button type="button" class="btn btn-success">Day off</button></td>
-                            <td data-title="Sat"><button type="button" class="btn btn-success">Day off</button></td>
+                            </span>
                         </tr>
-                        <!--                        <tr>-->
+                        <tr th:if="${week2 != null}">
+                            <td><p class="h4 font-weight-normal mb-3">Week 2</p></td>
+                            <span th:each = "el : ${week2}">
+                                <td><button th:text="${el} ? 'Working Day' : 'Day off'" type="button" class="btn" th:classappend="${el} ? btn-primary : btn-success"></button></td>
+                            </span>
+                        </tr>
+                                <!--                        <tr>-->
 <!--                            <td data-title="Sun">1</td>-->
 <!--                            <td data-title="Mon">2</td>-->
 <!--                            <td data-title="Tue">3</td>-->
