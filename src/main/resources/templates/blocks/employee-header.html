@@ -1,6 +1,38 @@
 <div th:fragment="employee-header" xmlns:th="http://www.w3.org/1999/xhtml">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="container-fluid">
+    <style>
+    ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 20px;
+}
+
+.navbar-header  .navbar-menu {
+  display: flex;
+ }
+
+ .navbar-menu .dropdown {
+    display: none;
+ }
+
+.page {
+    min-height: 4000px;
+}
+
+ /*  HERE IS WHAT YOU NEED*/
+
+ /* set the position to the main parent of the navbar as relative*/
+ .page {
+  position: relative;
+ }
+      #main-navbar {
+        position: sticky;
+        top:0;
+       }
+    </style>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 navbar-fixed-top" id="main">
+        <div class="container">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item active">
                     <a class="navbar-brand" href="/">Main</a>
