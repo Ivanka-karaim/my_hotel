@@ -39,17 +39,17 @@ public class EmployeeController {
             return "redirect:/login";
         }
         //List <Occupations> privileged =
-        if (getEmployee().getId_occupation().isManagement()){
-            model.addAttribute("response", "True");
-            //TODO
-            //model.addAttribute("custom", "/view");
-            //model.addAttribute("view", "/viewServ");
-        } else {
-            model.addAttribute("response", null);
-            //TODO
-            //model.addAttribute("custom", "/employee/view");
-            //model.addAttribute("view", "/employee/viewServ");
-        }
+        model.addAttribute("name", getEmployee().getFullname());
+//        if (getEmployee().getId_occupation().isManagement()){
+//            model.addAttribute("response", true);
+//            //model.addAttribute("custom", "/view");
+//            //model.addAttribute("view", "/viewServ");
+//        } else {
+//            model.addAttribute("response", false);
+//            //model.addAttribute("custom", "/employee/view");
+//            //model.addAttribute("view", "/employee/viewServ");
+//        }
+        model.addAttribute("response", getEmployee().getId_occupation().isManagement());
         return "employee";
         //return "employee-profile";
     }
@@ -69,7 +69,7 @@ public class EmployeeController {
 
     @PostMapping("/login")
     public String authorize(@RequestParam String email, @RequestParam String password, Model model) {
-        model.addAttribute("title", "Вхід");
+        model.addAttribute("title", "Log in");
         List<Employees> employees = employeesRepository.findAll();
         boolean email_confirm = false;
         boolean password_confirm;
@@ -205,7 +205,18 @@ public class EmployeeController {
     public String exit(Model model){
         model.addAttribute("title", "Exit");
         sessionId = null;
-        return "general";
+        return "redirect:/";
+    }
+
+    @GetMapping("/employee/colleagues")
+    public String colleagues(Model model){
+        if (sessionId == null){
+            return "login";
+        }
+        model.addAttribute("title", "Colleagues");
+        List<Employees> employees = employeesRepository.findAll();
+        model.addAttribute("employees", employees);
+        return "profiles";
     }
 
     //TODO

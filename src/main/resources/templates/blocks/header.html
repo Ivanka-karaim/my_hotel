@@ -1,18 +1,62 @@
 <div th:fragment="header" xmlns:th="http://www.w3.org/1999/xhtml">
-    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="/login">Log in as an employee</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <a class="navbar-brand" href="/response">Response</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
+    <style>
+    ul {
+  list-style-type: none;
+}
+
+li {
+  padding: 20px;
+}
+
+.navbar-header  .navbar-menu {
+  display: flex;
+ }
+
+ .navbar-menu .dropdown {
+    display: none;
+ }
+
+.page {
+    min-height: 4000px;
+}
+
+ /*  HERE IS WHAT YOU NEED*/
+
+ /* set the position to the main parent of the navbar as relative*/
+ .page {
+  position: relative;
+ }
+      #main-navbar {
+        position: sticky;
+        top:0;
+       }
+    </style>
+    <nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4 navbar-fixed-top">
+        <div class="container">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="/login">Sign in</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a class="navbar-brand" href="/response">Response</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
+            </ul>
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="navbar-brand" href="/">Berry Plaza</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                </li>
 <!--            <a class="navbar-brand" href="/">General</a>-->
 <!--            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">-->
 <!--                <span class="navbar-toggler-icon"></span>-->
 <!--            </button>-->
+            </ul>
         </div>
    </nav>
 </div>
