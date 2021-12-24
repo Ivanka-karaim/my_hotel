@@ -35,9 +35,15 @@ public class RoomService {
     public boolean addRoom() {
         return true;
     }
+
     public RoomDTO getId(int id) {
-        Optional<Room> room_op = roomRepository.findById(id);
-        return pars(room_op.get());
+        try {
+            Room room_op = roomRepository.findById(id).orElseThrow();
+            return pars(room_op);
+        }catch (Exception e ) {
+            return new RoomDTO();
+        }
+
     }
 
     public void deleteRoom(int id ) {
@@ -45,7 +51,6 @@ public class RoomService {
     }
 
     private RoomDTO pars(Room room) {
-
         return RoomDTO.builder()
                 .id_room(room.getId_room())
                 .floor(room.getFloor())

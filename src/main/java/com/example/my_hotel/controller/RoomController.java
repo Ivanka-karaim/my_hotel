@@ -30,7 +30,6 @@ public class RoomController {
     public String view(Model model) {
         List<RoomDTO> rooms = roomService.getAllRooms();
         model.addAttribute("title", "View");
-        System.out.println("62665");
         model.addAttribute("rooms", rooms);
         return "rooms";
     }
@@ -46,6 +45,7 @@ public class RoomController {
     @GetMapping("/removeRoom")
     public String remove(Model model) {
         List<RoomDTO> rooms = roomService.getAllRooms();
+        model.addAttribute("error", false);
         model.addAttribute("title", "Remove");
         model.addAttribute("rooms", rooms);
         return "rooms";
@@ -53,13 +53,20 @@ public class RoomController {
     @PostMapping("/removeRoom")
     public String remove_room(@RequestParam int id_room, Model model) {
         RoomDTO room = roomService.getId(id_room);
-        model.addAttribute("rooms", room);
+        if (room.getId_room()==0) {
+            model.addAttribute("error", true);
+        }
+        else {
+            model.addAttribute("error", false);
+            model.addAttribute("rooms", room);
+        }
         model.addAttribute("title", "Remove");
         return "rooms";
     }
     @GetMapping("/editRoom")
     public String edit (Model model) {
         List<RoomDTO> rooms = roomService.getAllRooms();
+        model.addAttribute("error", false);
         model.addAttribute("title", "Edit");
         model.addAttribute("rooms", rooms);
         return "rooms";
@@ -90,7 +97,13 @@ public class RoomController {
     @PostMapping("/editRoom")
     public String edit_room(@RequestParam int id_room, Model model) {
         RoomDTO room = roomService.getId(id_room);
-        model.addAttribute("rooms", room);
+        if (room.getId_room()==0) {
+            model.addAttribute("error", true);
+        }
+        else {
+            model.addAttribute("error", false);
+            model.addAttribute("rooms", room);
+        }
         model.addAttribute("title", "Edit");
         return "rooms";
     }

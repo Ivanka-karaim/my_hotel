@@ -73,10 +73,10 @@
             <div class="container mt-5">
                 <h1>Add classification room</h1>
                 <form action="/addClass" method="post">
-                    <input type="text" name="classification_room" placeholder="Enter classification" class="form-control"><br>
-                    <input type="text" name="cost" placeholder="Enter cost" class="form-control"><br>
-                    <input type="number" name="number_beds" placeholder="Enter number beds" class="form-control"><br>
-                    <button type="submit" class="btn btn-success">Add new room</button>
+                    <input type="text" name="classification_room" placeholder="Enter classification" class="form-control" required=""><br>
+                    <input type="number" min=1 name="cost" placeholder="Enter cost" class="form-control" required=""><br>
+                    <input type="number" min=1 max=3 name="number_beds" placeholder="Enter number beds" class="form-control" required=""><br>
+                    <button type="submit" class="btn btn-success">Add new classification room</button>
                 </form>
             </div>
         </div>
