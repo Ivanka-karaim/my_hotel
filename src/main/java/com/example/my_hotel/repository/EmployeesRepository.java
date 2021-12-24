@@ -14,9 +14,12 @@ public interface EmployeesRepository extends CrudRepository<Employees, Integer> 
     List <Employees> findAll();
     Optional<Employees> findById(int id);
 
+
+    //@Query("SELECT e.id_schedule, e.COUNT(e.id_schedule) FROM Employees e GROUP BY e.id_schedule;")
+    //List <Employees> getSchedulesAmount();
+
     //@Query("SELECT o.occupation FROM Occupations o WHERE o.id = (SELECT e.id_occupation FROM Employees e WHERE e.id=:number)")
     //List<Occupations> findOccupationById(@Param("number") int number);
-
 
     //@Query("SELECT Schedules FROM Schedules WHERE Schedules.id = (SELECT id_schedule FROM Employees WHERE id=:number)")
     //List<Schedules> findScheduleById(@Param("number") int number);

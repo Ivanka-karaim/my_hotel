@@ -91,11 +91,13 @@ public class EmployeeController {
             if (email_confirm && password_confirm) {
                 sessionId = employees.get(idList).getId();
                 return "redirect:/employee";
+            } else if (email_confirm && password.equals("")) {
+                model.addAttribute("errorPass", "Please enter the password.");
             } else if (email_confirm) {
                 model.addAttribute("errorPass", "Wrong password. Try again or call Technical Support.");
                 //model.addAttribute("email", email);
             } else if (password_confirm) {
-                model.addAttribute("errorEmail", "Cannot find your email address");
+                model.addAttribute("errorEmail", "Cannot find your email address.");
             }
             ///return "redirect:Login?errorEmail";
             return "login";
