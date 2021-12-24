@@ -24,19 +24,14 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-public class ResponseController {
-    @Autowired
-    private ResponseRepository responseRepository;
-
+public class ClientController {
     @Autowired
     private ClientRepository clientRepository;
 
-    @GetMapping("/response")
-    public String response(Model model) {
-        Iterable<Response> responses=responseRepository.findAll();
+    @GetMapping("/client")
+    public String client(Model model) {
         Iterable<Client> clients=clientRepository.findAll();
-        model.addAttribute("clients",clients);
-        model.addAttribute("responses", responses);
-        return "response";
+        model.addAttribute("clients", clients);
+        return "clients";
     }
 }
