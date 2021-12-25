@@ -118,14 +118,29 @@
                         <p th:text="${customs.get(el).getName()}"></p>
                         <p th:text="${customs.get(el).getPatronymic()}"></p>
                         <p th:text="${customs.get(el).getPhone_number}"></p>
-                        <form th:action="'/remove/'+${el.id_order}" method="post">
+                        <form th:action="'/remove/'+${el}" method="post">
                             <button type="submit" class="btn btn-warning">Delete</button>
                         </form>
                     </div>
             </h3>
-            <div th:if="${title=='EditServices'}">
-                <div th:each="el:${services}">
-                    <label>[[${el.getType_service()}]]<input th:value="${el.getId_service()}" name="service" type="checkbox" ></label>
+            <div th:if="${title=='edit'}" >
+                <div th:unless = "${type=='More'}" th:each = "el : ${customs}" class="alert alert-info mt-2">
+                    <p th:text="${'IPN '+el.getIPN().getIPN()}"></p>
+                    <p th:text="${'Booking ' +el.getId_booking().getId_booking()}"></p>
+                    <form th:action="'/edit/'+${el.getId_order()}" method="get">
+                        <button type="submit" class="btn btn-warning">Edit</button>
+                    </form>
+                </div>
+                <div th:if = "${type=='More'}">
+                    <p  th:text="${'Id of booking: '+ custom.getId_booking().getId_booking()}"></p>
+                    <p th:text="${'Id of room: '+custom.getId_booking().getRoom().getId_room()}"></p>
+                    <p th:text="${'Date of settle: '+custom.getId_booking().getDate_arrival()}"></p>
+                    <p th:text="${'Date of departure: ' +custom.getId_booking().getDate_departure()}"></p>
+                    <p th:text="${'Name: ' + custom.getId_booking().getName()}"></p>
+                    <p th:text="${'Phone number: '+custom.getId_booking().getPhone_number()}"></p>
+                    <p th:text="${'Count of people: '+custom.getId_booking().getCount_people()}"></p>
+                    <p th:text="${'Payment: '+custom.getId_booking().getCount_people()}"></p>
+                    <p th:text="${'Total cost: '+total_price}"></p>
                 </div>
             </div>
         </main>

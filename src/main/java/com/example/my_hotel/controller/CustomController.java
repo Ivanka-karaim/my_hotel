@@ -99,11 +99,14 @@ public class CustomController {
 
             Client client = clientService.getById(IPN);
             Booking booking =bookingService.getById(id_booking);
+        model.addAttribute("title", "Add");
             if(client == null) {
                 model.addAttribute("exception", "non-client");
+                return "custom";
             }
             if(booking == null){
                 model.addAttribute("exception", "non-booking");
+                return "custom";
             }
 
 
@@ -112,7 +115,7 @@ public class CustomController {
 
         List<CustomDTO> customs = customService.getAllCustoms();
         List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
-        model.addAttribute("title", "Add");
+
         model.addAttribute("typeForm","additional");
         model.addAttribute("id_order",id);
        model.addAttribute("services", additionalServices);
@@ -135,22 +138,28 @@ public class CustomController {
     public String remove(@PathVariable(value = "id_order") int id_order, Model model) {
         Custom custom = customRepository.findById(id_order).orElseThrow();
         customRepository.delete(custom);
-        return "redirect:/viewServ";
+        return "redirect:/view";
     }
 
-    @GetMapping("/editServices")
+    @GetMapping("/edit")
     public String edit (Model model) {
         List<CustomDTO> customs = customService.getAllCustoms();
-        model.addAttribute("title", "EditServices");
-        model.addAttribute("service", customs);
+        model.addAttribute("title", "edit");
+        model.addAttribute("customs", customs);
         return "custom";
     }
 
-    @PostMapping("/editServices/{id_order}")
-    public String edit (@PathVariable(value = "id_order") int id_order, @RequestParam List<Integer> services) {
+    @GetMapping("/edit/{id_order}")
+    public String edit (@PathVariable(value = "id_order") int id_order, @RequestParam List<Integer> services,Model model) {
         Custom custom = customRepository.findById(id_order).orElseThrow();
-        customService.addService(id_order, services);
-        customRepository.save(custom);
-        return "redirect:/viewServ";
+        float total_price = customService.getCostServices(id_order);
+        model.addAttribute("title", "View");
+        model.addAttribute("custom", custom);
+        model.addAttribute("type", "More");
+        model.addAttribute("total_price", total_price);
+//        Custom custom = customRepository.findById(id_order).orElseThrow();
+//        customService.addService(id_order, services);
+//        customRepository.save(custom);
+        return "custom";
     }
 }
