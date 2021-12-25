@@ -62,15 +62,15 @@
     </header>
     <main class="px-3">
         <div th:if="${title=='View'}" >
-            <div th:each="el : ${clients}" class="alert alert-info mt-2">
+            <ol th:each="el : ${clients}" class="alert alert-info mt-2">
                 <h1 th:text="${el.IPN}"></h1>
                 <h1 th:text="${el.surname}"></h1>
                 <h1 th:text="${el.name}"></h1>
                 <h1 th:text="${el.patronymic}"></h1>
                 <p th:text="${el.phone_number}"></p>
                 <p th:text="${el.email}"></p>
-                <p th:text="${el.bonus_card}"></p>
-            </div>
+<!--                <p th:text="${el.bonus_card}"></p>-->
+            </ol>
         </div>
         <div th:if="${title=='Add'}">
             <div class="container mt-5">
