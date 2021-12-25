@@ -2,6 +2,7 @@ package com.example.my_hotel.service;
 
 import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.Booking;
+import com.example.my_hotel.model.Client;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingService {
@@ -16,7 +18,6 @@ public class BookingService {
     private BookingRepository bookingRepository;
 
     public boolean addBooking(Booking booking) {
-        System.out.println(booking.getDate_arrival());
         Booking book = Booking.
                 builder()
                 .room(booking.getRoom())
@@ -31,6 +32,12 @@ public class BookingService {
         return true;
 
     }
+
+    public Booking getById(int id) {
+        Optional<Booking> client_op =bookingRepository.findById(id);
+        return client_op.orElseGet(Booking::new);
+    }
+
     public List<Booking> getAllBooks() {
         List<Booking> bookList = bookingRepository.findAll();
         return bookList;

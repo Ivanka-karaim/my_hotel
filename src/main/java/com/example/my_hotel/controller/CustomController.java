@@ -6,9 +6,7 @@ import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.*;
 import com.example.my_hotel.repository.CustomRepository;
 import com.example.my_hotel.repository.RoomRepository;
-import com.example.my_hotel.service.AdditionalServicesService;
-import com.example.my_hotel.service.CustomService;
-import com.example.my_hotel.service.RoomService;
+import com.example.my_hotel.service.*;
 import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +30,15 @@ public class CustomController {
 
     @Autowired
     AdditionalServicesService additionalServicesService;
+
+    @Autowired
+    ClientService clientService;
+    @Autowired
+    BookingService bookingService;
+
+
+    @Autowired
+    private  Order_ServicesService order_servicesService;
 
 
     @GetMapping("/view")
@@ -70,12 +77,14 @@ public class CustomController {
     }
 
     @PostMapping("/add")
-    public String add(@RequestParam int IPN, @RequestParam int id_booking, Model model) {
+    public String add(@RequestParam String IPN, @RequestParam int id_booking,@RequestParam List<Integer> service) {
+
+        customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking), service);
 
         List<CustomDTO> customs = customService.getAllCustoms();
         List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
-        model.addAttribute("title", "Add");
-        model.addAttribute("services", additionalServices);
+//        model.addAttribute("title", "Add");
+//        model.addAttribute("services", additionalServices);
         return "custom";
     }
 
