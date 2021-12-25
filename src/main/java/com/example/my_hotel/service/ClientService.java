@@ -49,7 +49,6 @@ public class ClientService {
                     .patronymic(client.getPatronymic())
                     .phone_number(client.getPhone_number())
                     .email(client.getEmail())
-                    .bonus_card(client.getBonus_card())
                     .build());
         }
         return clientDTOS;

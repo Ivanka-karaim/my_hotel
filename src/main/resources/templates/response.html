@@ -95,6 +95,7 @@
 <!--    <div th:each="re : ${responses}"class="alert alert-info mt-2">-->
     <li>
             <h3 th:text="${cl.email}"/>
+
             <p th:if="${cl.id_response.mark==1}">
                 <img style="vertical-align: middle; width: 24px;" th:src="@{img/st1.png}" alt="" />
             </p>

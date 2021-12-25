@@ -42,6 +42,9 @@ public class RoomController {
     public String adds(Model model) {
         model.addAttribute("title", "Add");
         List<Classificationroom> classs = classificationroomRepository.findAll();
+        for (Classificationroom cl: classs) {
+            System.out.println(cl.getId_classification());
+        }
         model.addAttribute("class", classs);
         return "rooms";
     }

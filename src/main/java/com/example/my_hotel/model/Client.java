@@ -44,7 +44,7 @@ public class Client {
 
     @ManyToOne
     @JoinColumn(name ="id_response")
-    private Response id_response ;
+    private Response id_response;
 
 
     public Client(String IPN, String surname, String name, String patronymic, String phone_number, String email) {
