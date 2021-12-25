@@ -60,33 +60,31 @@
                 <h1>Edit additional service</h1>
             <form th:action="'/employee/management/edit/'+${employee.id}" method="post">
                 <input type="text" th:value="${employee.fullname}" name="fullname" placeholder="Enter Name" class="form-control"><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
+                <small th:text="${errorFullname}" class="text-danger"></small><br>
                 <input type="text" th:value="${employee.surname}" name="surname" placeholder="Enter Surname" class="form-control"><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
+                <small th:text="${errorSurname}" class="text-danger"></small><br>
                 <input type="text" th:value="${employee.patron}" name="patron" placeholder="Enter Patronymic" class="form-control"><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
+                <small th:text="${errorPatron}" class="text-danger"></small><br>
                 <input type="date" th:value="${employee.birth_date}" name="birth_date" placeholder="Enter Birth-date" class="form-control"><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
+                <small th:text="${errorBirth}" class="text-danger"></small><br>
                 <input type="text" th:value="${employee.email}" name="email" placeholder="Enter Email" class="form-control"><br>
                 <small th:text="${errorEmail}" class="text-danger"></small><br>
                 <input type="text" th:value="${employee.phone_number}" name="phone_number" placeholder="Enter Phone number" class="form-control"><br>
-                <small th:text="${errorEmail}" class="text-danger"></small><br>
+                <small th:text="${errorPhone}" class="text-danger"></small><br>
                 <input type="number" th:value="${employee.ipn}" name="ipn" placeholder="Enter IPN" class="form-control"><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
+                <small th:text="${errorIpn}" class="text-danger"></small><br>
                 <input type="text" th:value="${employee.workbook}" name="workbook" placeholder="Enter Workbook" class="form-control"><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
+                <small th:text="${errorWorkbook}" class="text-danger"></small><br>
                 <select id="id_occupation" name="id_occupation" style="width: 1300px" align="left">
-                <div th:each="el: ${occupations}">
-                    <option th:value="${el.id}" th:text="${el.occupation}"></option>
-                </div>
+                    <div th:each="el: ${occupations}">
+                        <option th:value="${el.id}" th:text="${el.occupation}"></option>
+                    </div>
                 </select><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
                 <select id="id_schedule" name="id_schedule" style="width: 1300px" align="left">
                     <div th:each="el: ${schedules}">
                         <option th:value="${el.id}" th:text="${el.id}"></option>
                     </div>
                 </select><br>
-                <small th:text="${errorPass}" class="text-danger"></small><br>
                 <button type="submit" class="btn btn-success">Edit</button>
             </form>
         </div>

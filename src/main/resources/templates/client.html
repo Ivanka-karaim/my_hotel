@@ -76,11 +76,11 @@
             <div class="container mt-5">
                 <h1>Add client</h1>
                 <form action="/addClient" method="post">
-                    <input type="text" name="IPN" placeholder="Enter IPN" class="form-control"><br>
+                    <input type="text" pattern="[0-9]{10}"name="IPN" placeholder="Enter IPN" class="form-control"><br>
                     <input type="text" name="surname" placeholder="Enter Surname" class="form-control"><br>
                     <input type="text" name="name" placeholder="Enter Name" class="form-control"><br>
                     <input type="text" name="patronymic" placeholder="Enter Patronymic" class="form-control"><br>
-                    <input type="text" name="phone_number" placeholder="Enter Phone number" class="form-control"><br>
+                    <input type="text" pattern="^(+380|380)([0-9]{9})$" name="phone_number" placeholder="Enter Phone number(380_________)" class="form-control"><br>
                     <input type="text" name="email" placeholder="Enter Email" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Add new client</button>
                 </form>

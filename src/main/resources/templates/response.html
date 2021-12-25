@@ -84,11 +84,17 @@
           width: calc(100% - 10px);
           height: calc(100% + 10px);
         }
+
+        h1{
+        margin-top:500px;
+        font-weight: 800;
+        }
     </style>
 </head>
 <body>
 <div th:insert="blocks/header :: header"> </div>
 
+<h1 class="container text-center">RESPONSES</h1>
 
 <ol th:each="cl : ${clients}" class="square">
 <!--    <h3 th:text="${cl.email}"/>-->
@@ -125,6 +131,11 @@
     </li>
 <!--    </div>-->
 </ol>
+
+
+
+
+
 <div >
     <b>
 <!--        <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />-->
@@ -132,10 +143,9 @@
             <input type="number" min=1 max=5 name="mark" placeholder="Enter mark" class="form-control" required=""><br>
             <input type="text" name="comment" placeholder="Enter comment" class="form-control" required=""><br>
             <button class="double-border-button">
-<!--                <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />-->
+                <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />
                 Add new review</button>
 <!--        <img style="vertical-align: middle; width: 24px;" th:src="@{img/response_icon.jpg}" alt="" />-->
-
         </form>
     </b>
 </div>
