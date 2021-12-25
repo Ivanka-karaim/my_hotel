@@ -41,7 +41,7 @@ function ValidPhone() {
         <div class="form-group row">
             <label class="control-label col-sm-2" for="phone_number">Phone_number:</label>
             <div class="col-sm-10">
-                <input class="form-control" type="number" id="phone_number" placeholder="+380668886660" name="phone_number" value="" required="">
+                <input class="form-control" type="tel" id="phone_number" placeholder="+380668886660" name="phone_number" value="" required="">
             </div>
         </div>
         <hr>
@@ -51,6 +51,9 @@ function ValidPhone() {
             </div>
         </div>
     </form>
+    <div th:if="${error}">
+        <p>Error! The phone number is incorrect!</p>
+    </div>
 </div>
 <footer class="text-muted py-5">
     <!--contacts section-->
