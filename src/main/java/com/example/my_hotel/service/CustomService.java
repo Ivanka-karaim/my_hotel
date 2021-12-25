@@ -18,6 +18,9 @@ public class CustomService {
     private CustomRepository customRepository;
 
     @Autowired
+    private BookingRepository bookingRepository;
+
+    @Autowired
     private AdditionalServicesRepository additionalServicesRepository;
 
     @Autowired
@@ -40,8 +43,9 @@ public class CustomService {
         return parsingCustomInCustomDTO(customList);
     }
 
-    public boolean addCustom(Client IPN, Booking booking_id, List<Integer> services) {
-        float cost = order_servicesService.getCost(services);
+    public boolean addCustom(Client IPN, Booking booking_id) {
+        float cost = 0f;
+        System.out.println(booking_id);
         cost += booking_id.getPrice();
         List<Custom> customs = customRepository.findAll();
         int max = 0;
@@ -49,7 +53,7 @@ public class CustomService {
                 builder()
                 .IPN(IPN)
                 .id_booking(booking_id)
-                .cost_additional_services(order_servicesService.getCost(services))
+                .cost_additional_services(0)
                 .total_cost(cost)
                 .paid(false)
                 .build();
@@ -62,12 +66,45 @@ public class CustomService {
                 max = custom1.getId_order();
             }
         }
-//        order_servicesService.addOrderService(this.getById(max),services
-//                .stream()
-//                .map(additionalServicesService::getById)
-//                .collect(Collectors.toList()));
-        //add additional services
-      return true;
+        return true;
+    }
+
+//    public boolean addCustom(Client IPN, Booking booking_id, List<Integer> services) {
+//        float cost = order_servicesService.getCost(services);
+//        cost += booking_id.getPrice();
+//        List<Custom> customs = customRepository.findAll();
+//        int max = 0;
+//        Custom custom = Custom.
+//                builder()
+//                .IPN(IPN)
+//                .id_booking(booking_id)
+//                .cost_additional_services(order_servicesService.getCost(services))
+//                .total_cost(cost)
+//                .paid(false)
+//                .build();
+//        System.out.println(max);
+//        customRepository.save(custom);
+//
+//        for(Custom custom1: customs) {
+//            System.out.println(custom1.getId_order());
+//            if(max<custom1.getId_order()) {
+//                max = custom1.getId_order();
+//            }
+//        }
+////        order_servicesService.addOrderService(this.getById(max),services
+////                .stream()
+////                .map(additionalServicesService::getById)
+////                .collect(Collectors.toList()));
+//        //add additional services
+//      return true;
+//    }
+
+    public boolean addService(int id_service, List<Integer> services){
+        order_servicesService.addOrderService(this.getById(id_service),services
+                .stream()
+                .map(additionalServicesService::getById)
+                .collect(Collectors.toList()));
+        return true;
     }
 
     public float getCostServices(int id_order){
@@ -83,14 +120,25 @@ public class CustomService {
         return cost;
     }
 
-    public float getCost(int id_order){
-        Optional<Classificationroom> priceRoom = classificationroomRepository.getPriceRoomByIdCustom(id_order);
-        float price = priceRoom.get().getCost();
-        System.out.println(price);
-        price+=getCostServices(id_order);
-        System.out.println(price);
-        return price;
+    public List<String> getIPNList(){
+        return customRepository.getExistIPN();
     }
+
+    public List<Integer> getId_bookingList(){
+        return customRepository.getExistId_booking();
+    }
+
+
+//    public float getCost(int id_order){
+//        float cost = 0f;
+//        Custom d = customRepository.findById(id_order).orElseThrow();
+//        List<Booking> priceRoom = bookingRepository.getPriceRoomByIdCustom(d);
+//        for(Booking service: priceRoom) {
+//            cost +=service.getPrice();
+//        }
+//        cost+=getCostServices(id_order);
+//        return cost;
+//    }
 
     private List<CustomDTO> parsingCustomInCustomDTO(List<Custom> list) {
         List<CustomDTO> customDTOS = new ArrayList<>();

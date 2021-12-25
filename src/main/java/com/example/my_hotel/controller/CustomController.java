@@ -70,37 +70,63 @@ public class CustomController {
     public String add(Model model) {
 
         List<CustomDTO> customs = customService.getAllCustoms();
-        List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
+        //List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
         model.addAttribute("title", "Add");
-        model.addAttribute("services", additionalServices);
+        //model.addAttribute("services", additionalServices);
         return "custom";
     }
 
     @PostMapping("/add")
-    public String add(@RequestParam String IPN, @RequestParam int id_booking,@RequestParam List<Integer> service) {
+    public String add(@RequestParam String IPN, @RequestParam int id_booking) {
 
-        customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking), service);
+        //customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking), service);
+        if (!customService.getIPNList().contains(IPN)){
+            return "addClient";
+        }
 
+        if (!customService.getId_bookingList().contains(id_booking)){
+            return "booking";
+        }
+        customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking));
         List<CustomDTO> customs = customService.getAllCustoms();
-        List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
+        //List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
 //        model.addAttribute("title", "Add");
 //        model.addAttribute("services", additionalServices);
-        return "custom";
+        return "redirect:/view";
     }
 
     @GetMapping("/remove")
     public String remove(Model model) {
-        List<CustomDTO> custom = customService.getAllCustoms();
+        List<CustomDTO> customs = customService.getAllCustoms();
+        Map<Integer, Client> clientHashMap = new HashMap<>();
+        for (CustomDTO customDTO: customs){
+            clientHashMap.put(customDTO.getId_order(), customDTO.getIPN());
+        }
         model.addAttribute("title", "Remove");
-        model.addAttribute("additionalservices", custom);
+        model.addAttribute("customs", clientHashMap);
         return "custom";
     }
 
-    @GetMapping("/edit")
+    @PostMapping("/remove/{id_order}")
+    public String remove(@PathVariable(value = "id_order") int id_order, Model model) {
+        Custom custom = customRepository.findById(id_order).orElseThrow();
+        customRepository.delete(custom);
+        return "redirect:/viewServ";
+    }
+
+    @GetMapping("/editServices")
     public String edit (Model model) {
         List<CustomDTO> customs = customService.getAllCustoms();
-        model.addAttribute("title", "Edit");
-        model.addAttribute("additionalservices", customs);
+        model.addAttribute("title", "EditServices");
+        model.addAttribute("service", customs);
         return "custom";
+    }
+
+    @PostMapping("/editServices/{id_order}")
+    public String edit (@PathVariable(value = "id_order") int id_order, @RequestParam List<Integer> services) {
+        Custom custom = customRepository.findById(id_order).orElseThrow();
+        customService.addService(id_order, services);
+        customRepository.save(custom);
+        return "redirect:/viewServ";
     }
 }

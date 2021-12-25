@@ -16,13 +16,18 @@ import java.util.Optional;
 public interface CustomRepository extends CrudRepository<Custom, Integer> {
     List<Custom> findAll();
 
+    @Query("SELECT c.IPN FROM Client c")
+    List<String> getExistIPN();
+
+    @Query("SELECT c.id_booking FROM Booking c")
+    List<Integer> getExistId_booking();
 
 //    @Query("SELECT os.id_service WHERE os.id_order=:curr.id_order")
 //    List<Custom> getId_serviceByIdCustom(@Param("curr_id_order") int id_order);
 
 //    @Query("SELECT c FROM Custom c WHERE c.id_booking = (SELECT b.id_booking FROM Booking b WHERE b.date_arrival=now() AND b.phone_number=:current_number)")
 //    List<Custom> findCustomByNumberDate(@Param("current_number") String current_number);
-//
+
 
 
 
