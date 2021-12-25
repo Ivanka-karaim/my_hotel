@@ -19,17 +19,27 @@
 </style>
 <div th:fragment="footer" xmlns:th="http://www.w3.org/1999/xhtml">
     <footer class="bg-white">
-        <div class="bg-light py-4">
+        <div class="bg-light py-4" style="
+        /*text-align: center;*/
+        border: 1px solid #DBDBDB;
+">
             <div class="container text-center">
                 <h3 class="sidebar-title"> Contacts</h3>
                 <div>
-                    <span class="text-muted mb-0 py-2">C:</span>
-                    <a href="tel:+380 44 13 372 45" class="contact-link">+380 44 13 372 45</a>
+                    <span class="text-muted mb-0 py-2 lead">C:
+                    <a href="tel:+380 44 13 372 45" class="contact-link link-secondary">+380 44 13 372 45</a>
+                        </span>
                 </div>
                 <div>
-                    <span class="text-muted mb-0 py-2">E:</span>
-                    <a href="mailto:berryhotel@gmail.com"class="contact-link"> berryhotel@gmail.com</a>
+                    <span class="text-muted mb-0 py-2  lead">E:
+                    <a href="mailto:berryhotel@gmail.com" class="contact-link link-secondary"> berryhotel@gmail.com</a>
+                        </span>
                 </div>
+                <!--            <div>-->
+                <!--                <span class="contact-type lead text-muted">-->
+                <!--                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="contact-link link-secondary">Tech support</a>-->
+                <!--                </span>-->
+                <!--            </div>-->
             </div>
         </div>
     </footer>

@@ -215,6 +215,7 @@ public class EmployeeController {
         }
         model.addAttribute("title", "Colleagues");
         List<Employees> employees = employeesRepository.findAll();
+        employees.remove(getEmployee());
         model.addAttribute("employees", employees);
         return "profiles";
     }
