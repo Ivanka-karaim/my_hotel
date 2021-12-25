@@ -40,7 +40,7 @@ public class Client {
     @Size(max=30)
     private String email;
 
-    private int  bonus_card;
+    private Integer  bonus_card;
 
     @ManyToOne
     @JoinColumn(name ="id_response")

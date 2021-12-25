@@ -16,9 +16,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.EntityExistsException;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Controller
 public class CustomController {
@@ -76,23 +78,45 @@ public class CustomController {
         return "custom";
     }
 
+    @PostMapping("/add/service")
+    public String addService(@RequestParam(value = "id_order") Integer id_order, @RequestParam List<Integer> service, Model model) {
+        System.out.println(id_order);
+
+        order_servicesService.addOrderService(customService.getById(id_order), service.stream()
+             .map(additionalServicesService::getById)
+             .collect(Collectors.toList()));
+
+        model.addAttribute("title", "Add");
+        return "custom";
+    }
+
     @PostMapping("/add")
-    public String add(@RequestParam String IPN, @RequestParam int id_booking) {
+    public String add(@RequestParam String IPN, @RequestParam int id_booking, Model model) {
 
         //customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking), service);
-        if (!customService.getIPNList().contains(IPN)){
-            return "addClient";
-        }
 
-        if (!customService.getId_bookingList().contains(id_booking)){
-            return "booking";
-        }
-        customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking));
+
+
+            Client client = clientService.getById(IPN);
+            Booking booking =bookingService.getById(id_booking);
+            if(client == null) {
+                model.addAttribute("exception", "non-client");
+            }
+            if(booking == null){
+                model.addAttribute("exception", "non-booking");
+            }
+
+
+            Integer id = customService.addCustom(clientService.getById(IPN), bookingService.getById(id_booking));
+
+
         List<CustomDTO> customs = customService.getAllCustoms();
-        //List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
-//        model.addAttribute("title", "Add");
-//        model.addAttribute("services", additionalServices);
-        return "redirect:/view";
+        List<AdditionalServicesDTO> additionalServices = additionalServicesService.getAllAdditionalServices();
+        model.addAttribute("title", "Add");
+        model.addAttribute("typeForm","additional");
+        model.addAttribute("id_order",id);
+       model.addAttribute("services", additionalServices);
+        return "custom";
     }
 
     @GetMapping("/remove")

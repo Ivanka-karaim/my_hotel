@@ -1,5 +1,6 @@
 package com.example.my_hotel.service;
 
+import com.example.my_hotel.dto.ClientDTO;
 import com.example.my_hotel.dto.CustomDTO;
 import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.*;
@@ -7,6 +8,7 @@ import com.example.my_hotel.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +34,8 @@ public class CustomService {
     @Autowired
     private  AdditionalServicesService additionalServicesService;
 
+    @Autowired
+    private ClientService clientService;
 
     public Custom getById(int id) {
         Optional<Custom> custom_op = customRepository.findById(id);
@@ -43,12 +47,14 @@ public class CustomService {
         return parsingCustomInCustomDTO(customList);
     }
 
-    public boolean addCustom(Client IPN, Booking booking_id) {
+    public Integer addCustom(Client IPN, Booking booking_id) {
         float cost = 0f;
-        System.out.println(booking_id);
+        if (IPN == null || booking_id == null) {
+            return -1;
+        }
+
         cost += booking_id.getPrice();
         List<Custom> customs = customRepository.findAll();
-        int max = 0;
         Custom custom = Custom.
                 builder()
                 .IPN(IPN)
@@ -57,16 +63,9 @@ public class CustomService {
                 .total_cost(cost)
                 .paid(false)
                 .build();
-        System.out.println(max);
         customRepository.save(custom);
+        return custom.getId_order();
 
-        for(Custom custom1: customs) {
-            System.out.println(custom1.getId_order());
-            if(max<custom1.getId_order()) {
-                max = custom1.getId_order();
-            }
-        }
-        return true;
     }
 
 //    public boolean addCustom(Client IPN, Booking booking_id, List<Integer> services) {
