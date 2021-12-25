@@ -278,17 +278,67 @@ public class EmployeeController {
             return "redirect:/login";
         }
         model.addAttribute("title", "Add");
+        model.addAttribute("errorFullname", "");
+        model.addAttribute("errorSurname", "");
+        model.addAttribute("errorPatron", "");
+        model.addAttribute("errorBirth", "");
         model.addAttribute("errorEmail", "");
+        model.addAttribute("errorPhone", "");
         model.addAttribute("errorPass", "");
+        model.addAttribute("errorIpn", "");
+        model.addAttribute("errorWorkbook", "");
         model.addAttribute("occupations", occupationsRepository.findAll());
         model.addAttribute("schedules", schedulesRepository.findAll());
         return "management";
     }
     @PostMapping("/employee/management/add")
     public String add(@RequestParam String surname, @RequestParam String fullname, @RequestParam String patron, @RequestParam int ipn, @RequestParam Date birth_date, @RequestParam String email, @RequestParam String phone_number, @RequestParam String workbook, @RequestParam String password_employee, @RequestParam int id_occupation, @RequestParam int id_schedule, Model model) {
-        Employees employee = new Employees(surname, fullname, patron, ipn, birth_date, email, phone_number, workbook, password_employee, occupationsRepository.findById(id_occupation).get(), schedulesRepository.findById(id_schedule).get());
-        employeesRepository.save(employee);
-        return "redirect:/employee/management/";
+        boolean error = false;
+        model.addAttribute("title", "Add");
+        if(fullname.equals("")) {
+            model.addAttribute("errorFullname", "Enter name.");
+            error = true;
+        }
+        if(surname.equals("")) {
+            model.addAttribute("errorSurname", "Enter Surname.");
+            error = true;
+        }
+        if(patron.equals("")) {
+            model.addAttribute("errorPatron", "Enter Patronymic.");
+            error = true;
+        }
+        if(birth_date==null) {
+            model.addAttribute("errorBirth", "Enter Birth-date.");
+            error = true;
+        }
+        if(email.equals("")) {
+            model.addAttribute("errorEmail", "Enter email.");
+            error = true;
+        }
+        if(phone_number.equals("")) {
+            model.addAttribute("errorPhone", "Enter Phone number.");
+            error = true;
+        }
+        if(password_employee.equals("")) {
+            model.addAttribute("errorPass", "Enter Password.");
+            error = true;
+        }
+        if(ipn < 0) {
+            model.addAttribute("errorIpn", "IPN must be bigger than 0.");
+            error = true;
+        }
+        if(fullname.equals("")) {
+            model.addAttribute("errorWorkbook", "Enter Workbook No.");
+            error = true;
+        }
+        if (!error) {
+            Employees employee = new Employees(surname, fullname, patron, ipn, birth_date, email, phone_number, workbook, password_employee, occupationsRepository.findById(id_occupation).get(), schedulesRepository.findById(id_schedule).get());
+            employeesRepository.save(employee);
+            return "redirect:/employee/management/";
+        }
+        model.addAttribute("occupations", occupationsRepository.findAll());
+        model.addAttribute("schedules", schedulesRepository.findAll());
+        return "management";
     }
 
     @GetMapping("/employee/management/edit")
@@ -299,8 +349,15 @@ public class EmployeeController {
         List<Employees> employees = employeesRepository.findAll();
         employees.remove(getEmployee());
         model.addAttribute("title", "Edit");
+        model.addAttribute("errorFullname", "");
+        model.addAttribute("errorSurname", "");
+        model.addAttribute("errorPatron", "");
+        model.addAttribute("errorBirth", "");
         model.addAttribute("errorEmail", "");
+        model.addAttribute("errorPhone", "");
         model.addAttribute("errorPass", "");
+        model.addAttribute("errorIpn", "");
+        model.addAttribute("errorWorkbook", "");
         model.addAttribute("employees", employees);
         model.addAttribute("occupations", occupationsRepository.findAll());
         model.addAttribute("schedules", schedulesRepository.findAll());
@@ -312,32 +369,80 @@ public class EmployeeController {
         if (!employeesRepository.existsById(id)){
             return "/employee/management/edit";
         }
+        model.addAttribute("title", "Edit");
         Optional<Employees> employee = employeesRepository.findById(id);
         model.addAttribute("employee", employee.get());
+        model.addAttribute("errorFullname", "");
+        model.addAttribute("errorSurname", "");
+        model.addAttribute("errorPatron", "");
+        model.addAttribute("errorBirth", "");
         model.addAttribute("errorEmail", "");
+        model.addAttribute("errorPhone", "");
         model.addAttribute("errorPass", "");
+        model.addAttribute("errorIpn", "");
+        model.addAttribute("errorWorkbook", "");
         model.addAttribute("occupations", occupationsRepository.findAll());
         model.addAttribute("schedules", schedulesRepository.findAll());
         return "edit_employee";
     }
 
     @PostMapping("/employee/management/edit/{id}")
-    public String edit (@PathVariable(value = "id") int id, String surname, String fullname, String patron, int ipn, Date birth_date, String email, String phone_number, String workbook, int id_occupation, int id_schedule) {
+    public String edit (@PathVariable(value = "id") int id, String surname, String fullname, String patron, int ipn, Date birth_date, String email, String phone_number, String workbook, int id_occupation, int id_schedule, Model model) {
         Employees employee = employeesRepository.findById(id).orElseThrow();
+        boolean error = false;
+        model.addAttribute("title", "Edit");
+        if(fullname.equals("")) {
+            model.addAttribute("errorFullname", "Enter name.");
+            error = true;
+        }
+        if(surname.equals("")) {
+            model.addAttribute("errorSurname", "Enter Surname.");
+            error = true;
+        }
+        if(patron.equals("")) {
+            model.addAttribute("errorPatron", "Enter Patronymic.");
+            error = true;
+        }
+        if(birth_date==null) {
+            model.addAttribute("errorBirth", "Enter Birth-date.");
+            error = true;
+        }
+        if(email.equals("")) {
+            model.addAttribute("errorEmail", "Enter email.");
+            error = true;
+        }
+        if(phone_number.equals("")) {
+            model.addAttribute("errorPhone", "Enter Phone number.");
+            error = true;
+        }
+        if(ipn < 0) {
+            model.addAttribute("errorIpn", "IPN must be bigger than 0.");
+            error = true;
+        }
+        if(fullname.equals("")) {
+            model.addAttribute("errorWorkbook", "Enter Workbook No.");
+            error = true;
+        }
         //employee.setType_service(type_service);
         //additionalServices.setPrice(price);
-        employee.setSurname(surname);
-        employee.setFullname(fullname);
-        employee.setPatron(patron);
-        employee.setIpn(ipn);
-        employee.setBirth_date(birth_date);
-        employee.setEmail(email);
-        employee.setPhone_number(phone_number);
-        employee.setWorkbook(workbook);
-        employee.setId_occupation(occupationsRepository.findById(id_occupation).get());
-        employee.setId_schedule(schedulesRepository.findById(id_schedule).get());
-        employeesRepository.save(employee);
-        return "redirect:/employee/management";
+        if (!error) {
+            employee.setSurname(surname);
+            employee.setFullname(fullname);
+            employee.setPatron(patron);
+            employee.setIpn(ipn);
+            employee.setBirth_date(birth_date);
+            employee.setEmail(email);
+            employee.setPhone_number(phone_number);
+            employee.setWorkbook(workbook);
+            employee.setId_occupation(occupationsRepository.findById(id_occupation).get());
+            employee.setId_schedule(schedulesRepository.findById(id_schedule).get());
+            employeesRepository.save(employee);
+            return "redirect:/employee/management";
+        }
+        model.addAttribute("employee", employee);
+        model.addAttribute("occupations", occupationsRepository.findAll());
+        model.addAttribute("schedules", schedulesRepository.findAll());
+        return "edit_employee";
     }
 
     @GetMapping("/employee/management/remove")
