@@ -35,6 +35,9 @@ public class BookingService {
 
     public Booking getById(int id) {
         Optional<Booking> client_op =bookingRepository.findById(id);
+        if(client_op.isEmpty()) {
+            return null;
+        }
         return client_op.orElseGet(Booking::new);
     }
 

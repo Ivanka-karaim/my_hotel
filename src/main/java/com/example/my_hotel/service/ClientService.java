@@ -22,6 +22,9 @@ public class ClientService {
 
     public Client getById(String id) {
         Optional<Client> client_op =clientRepository.findById(id);
+        if(client_op.isEmpty()) {
+            return null;
+        }
         return client_op.orElseGet(Client::new);
     }
 
