@@ -1,10 +1,12 @@
 package com.example.my_hotel.controller;
 
+import com.example.my_hotel.dto.AdditionalServicesDTO;
 import com.example.my_hotel.dto.RoomDTO;
 import com.example.my_hotel.model.*;
 import com.example.my_hotel.repository.EmployeesRepository;
 import com.example.my_hotel.repository.OccupationsRepository;
 import com.example.my_hotel.repository.RoomRepository;
+import com.example.my_hotel.repository.SchedulesRepository;
 import com.example.my_hotel.service.CustomService;
 import com.example.my_hotel.service.RoomService;
 import org.apache.tomcat.jni.Local;
@@ -12,9 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.sql.Date;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.*;
@@ -28,6 +32,9 @@ public class EmployeeController {
 
     @Autowired
     private OccupationsRepository occupationsRepository;
+
+    @Autowired
+    private SchedulesRepository schedulesRepository;
 
     @Autowired
     private CustomService customService;
@@ -149,7 +156,7 @@ public class EmployeeController {
     public String profile(Model model){
         model.addAttribute("title", "Profile");
         if (sessionId == null){
-            return "login";
+            return "redirect:/login";
         }
         //List<Employees> employee = employeesRepository.findAllById();
         //String sql = "SELECT * FROM employees WHERE id = " + sessionId;
@@ -211,7 +218,7 @@ public class EmployeeController {
     @GetMapping("/employee/colleagues")
     public String colleagues(Model model){
         if (sessionId == null){
-            return "login";
+            return "redirect:/login";
         }
         model.addAttribute("title", "Colleagues");
         List<Employees> employees = employeesRepository.findAll();
@@ -249,5 +256,106 @@ public class EmployeeController {
             return null;
         }
         return opt.get();
+    }
+
+
+
+    @GetMapping("/employee/management")
+    public String view(Model model) {
+        if (sessionId == null){
+            return "redirect:/login";
+        }
+        List<Employees> employees = employeesRepository.findAll();
+        employees.remove(getEmployee());
+        model.addAttribute("title", "View");
+        model.addAttribute("employees", employees);
+        return "management";
+    }
+
+    @GetMapping("/employee/management/add")
+    public String add(Model model) {
+        if (sessionId == null){
+            return "redirect:/login";
+        }
+        model.addAttribute("title", "Add");
+        model.addAttribute("errorEmail", "");
+        model.addAttribute("errorPass", "");
+        model.addAttribute("occupations", occupationsRepository.findAll());
+        model.addAttribute("schedules", schedulesRepository.findAll());
+        return "management";
+    }
+    @PostMapping("/employee/management/add")
+    public String add(@RequestParam String surname, @RequestParam String fullname, @RequestParam String patron, @RequestParam int ipn, @RequestParam Date birth_date, @RequestParam String email, @RequestParam String phone_number, @RequestParam String workbook, @RequestParam String password_employee, @RequestParam int id_occupation, @RequestParam int id_schedule, Model model) {
+        Employees employee = new Employees(surname, fullname, patron, ipn, birth_date, email, phone_number, workbook, password_employee, occupationsRepository.findById(id_occupation).get(), schedulesRepository.findById(id_schedule).get());
+        employeesRepository.save(employee);
+        return "redirect:/employee/management/";
+    }
+
+    @GetMapping("/employee/management/edit")
+    public String edit (Model model) {
+        if (sessionId == null){
+            return "redirect:/login";
+        }
+        List<Employees> employees = employeesRepository.findAll();
+        employees.remove(getEmployee());
+        model.addAttribute("title", "Edit");
+        model.addAttribute("errorEmail", "");
+        model.addAttribute("errorPass", "");
+        model.addAttribute("employees", employees);
+        model.addAttribute("occupations", occupationsRepository.findAll());
+        model.addAttribute("schedules", schedulesRepository.findAll());
+        return "management";
+    }
+
+    @GetMapping("/employee/management/edit/{id}")
+    public String edit_service (@PathVariable(value = "id") int id, Model model) {
+        if (!employeesRepository.existsById(id)){
+            return "/employee/management/edit";
+        }
+        Optional<Employees> employee = employeesRepository.findById(id);
+        model.addAttribute("employee", employee.get());
+        model.addAttribute("errorEmail", "");
+        model.addAttribute("errorPass", "");
+        model.addAttribute("occupations", occupationsRepository.findAll());
+        model.addAttribute("schedules", schedulesRepository.findAll());
+        return "edit_employee";
+    }
+
+    @PostMapping("/employee/management/edit/{id}")
+    public String edit (@PathVariable(value = "id") int id, String surname, String fullname, String patron, int ipn, Date birth_date, String email, String phone_number, String workbook, int id_occupation, int id_schedule) {
+        Employees employee = employeesRepository.findById(id).orElseThrow();
+        //employee.setType_service(type_service);
+        //additionalServices.setPrice(price);
+        employee.setSurname(surname);
+        employee.setFullname(fullname);
+        employee.setPatron(patron);
+        employee.setIpn(ipn);
+        employee.setBirth_date(birth_date);
+        employee.setEmail(email);
+        employee.setPhone_number(phone_number);
+        employee.setWorkbook(workbook);
+        employee.setId_occupation(occupationsRepository.findById(id_occupation).get());
+        employee.setId_schedule(schedulesRepository.findById(id_schedule).get());
+        employeesRepository.save(employee);
+        return "redirect:/employee/management";
+    }
+
+    @GetMapping("/employee/management/remove")
+    public String remove(Model model) {
+        if (sessionId == null){
+            return "redirect:/login";
+        }
+        List<Employees> employees = employeesRepository.findAll();
+        employees.remove(getEmployee());
+        model.addAttribute("title", "Remove");
+        model.addAttribute("employees", employees);
+        return "management";
+    }
+
+    @PostMapping("/employee/management/remove/{id}")
+    public String remove(@PathVariable(value = "id") int id, Model model) {
+        Employees employee = employeesRepository.findById(id).orElseThrow();
+        employeesRepository.delete(employee);
+        return "redirect:/employee/management";
     }
 }

@@ -13,8 +13,7 @@
 <div class="container" align="center">
   <h2>Room booked</h2>
   <p>Date_arrival: <strong th:text="${#dates.format(booking.getDate_arrival(), 'yyyy-MM-dd')}" ></strong></p>
-  <p>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></p>
-  <p class="mt-5"> <strong th:text="${booking.getCount_people()}" ></strong></p><br>
+  <p>Date_departure: <strong th:text="${#dates.format(booking.getDate_departure(), 'yyyy-MM-dd')}" ></strong></p><br>
   <div th:if="${role=='employee'}" >
   <footer class="mt-auto text-white-50">
     <a class="btn btn-primary" aria-current="page" href="/viewBook">Back</a>

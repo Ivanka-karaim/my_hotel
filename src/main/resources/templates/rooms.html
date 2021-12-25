@@ -7,6 +7,11 @@
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.88.1">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <title>Rooms</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/5.1/examples/cover/">
@@ -91,7 +96,7 @@
             <div class="container mt-5">
                 <h1>Remove rooms</h1>
                 <form action="/removeRoom" method="post">
-                    <input type="text" name="id_room" placeholder="Enter id_room" class="form-control"><br>
+                    <input type="number" name="id_room" placeholder="Enter id_room" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Search</button>
                 </form>
             </div>
@@ -114,7 +119,7 @@
             <div class="container mt-5">
                 <h1>Edit rooms</h1>
                 <form action="/editRoom" method="post">
-                    <input type="text" name="id_room" placeholder="Enter id_room" class="form-control"><br>
+                    <input type="number" name="id_room" placeholder="Enter id_room" class="form-control"><br>
                     <button type="submit" class="btn btn-success">Search</button>
                 </form>
             </div>
@@ -131,6 +136,11 @@
                     <button type="submit" class="btn btn-warning">Edit room</button>
                 </form>
             </div>
+            </div>
+        </h3>
+        <h3 th:if="${error}">
+            <div class="container">
+                <h2>This room cannot be deleted</h2>
             </div>
         </h3>
     </main>
