@@ -144,35 +144,33 @@
                 <h1>Register new employee</h1>
                 <form action="/employee/management/add" method="post">
                     <input type="text" name="fullname" placeholder="Enter Name" class="form-control"><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
+                    <small th:text="${errorFullname}" class="text-danger"></small><br>
                     <input type="text" name="surname" placeholder="Enter Surname" class="form-control"><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
+                    <small th:text="${errorSurname}" class="text-danger"></small><br>
                     <input type="text" name="patron" placeholder="Enter Patronymic" class="form-control"><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
+                    <small th:text="${errorPatron}" class="text-danger"></small><br>
                     <input type="date" name="birth_date" placeholder="Enter Birth-date" class="form-control"><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
+                    <small th:text="${errorBirth}" class="text-danger"></small><br>
                     <input type="text" name="email" placeholder="Enter Email" class="form-control"><br>
                     <small th:text="${errorEmail}" class="text-danger"></small><br>
                     <input type="text" name="phone_number" placeholder="Enter Phone number" class="form-control"><br>
-                    <small th:text="${errorEmail}" class="text-danger"></small><br>
+                    <small th:text="${errorPhone}" class="text-danger"></small><br>
                     <input type="password" name="password_employee" placeholder="Password" class="form-control"><br>
                     <small th:text="${errorPass}" class="text-danger"></small><br>
                     <input type="number" name="ipn" placeholder="Enter IPN" class="form-control"><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
+                    <small th:text="${errorIpn}" class="text-danger"></small><br>
                     <input type="text" name="workbook" placeholder="Enter Workbook" class="form-control"><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
+                    <small th:text="${errorWorkbook}" class="text-danger"></small><br>
                     <select id="id_occupation" name="id_occupation" style="width: 1300px" align="left">
                         <div th:each="el: ${occupations}">
                             <option th:value="${el.id}" th:text="${el.occupation}"></option>
                         </div>
                     </select><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
                     <select id="id_schedule" name="id_schedule" style="width: 1300px" align="left">
                         <div th:each="el: ${schedules}">
                             <option th:value="${el.id}" th:text="${el.id}"></option>
                         </div>
                     </select><br>
-                    <small th:text="${errorPass}" class="text-danger"></small><br>
                     <button type="submit" class="btn btn-success">Add</button>
                 </form>
             </div>
@@ -340,7 +338,7 @@
     </main>
 
     <footer class="mt-auto text-white-50">
-        <a class="nav-link active" aria-current="page" href="/employee/management/">Back</a>
+        <a class="nav-link active" aria-current="page" href="/employee/">Back</a>
     </footer>
 </div>
 
