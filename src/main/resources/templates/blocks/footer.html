@@ -1,15 +1,35 @@
+<style>
+    #button-addon1 {
+      color: #ffc371;
+    }
+
+    i {
+      color: #ffc371;
+    }
+
+    .form-control::placeholder {
+      font-size: 0.95rem;
+      color: #aaa;
+      font-style: italic;
+    }
+
+    .form-control.shadow-0:focus {
+      box-shadow: none;
+    }
+</style>
 <div th:fragment="footer" xmlns:th="http://www.w3.org/1999/xhtml">
-    <footer class="text-muled">
-        <!--contacts section-->
-        <div class="contacts">
-            <h3 class="sidebar-title"> Contacts</h3>
-            <div>
-                <span class="contact-type">C:</span>
-                <a href="tel:+380 97 13 372 11" class="contact-link">+380 97 13 372 11</a>
-            </div>
-            <div>
-                <span class="contact-type">E:</span>
-                <a href="mailto:dnkrupkoo@gmail.com"class="contact-link"> dnkrupkoo@gmail.com</a>
+    <footer class="bg-white">
+        <div class="bg-light py-4">
+            <div class="container text-center">
+                <h3 class="sidebar-title"> Contacts</h3>
+                <div>
+                    <span class="text-muted mb-0 py-2">C:</span>
+                    <a href="tel:+380 44 13 372 45" class="contact-link">+380 44 13 372 45</a>
+                </div>
+                <div>
+                    <span class="text-muted mb-0 py-2">E:</span>
+                    <a href="mailto:berryhotel@gmail.com"class="contact-link"> berryhotel@gmail.com</a>
+                </div>
             </div>
         </div>
     </footer>
