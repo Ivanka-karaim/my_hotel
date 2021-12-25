@@ -17,6 +17,7 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Pattern;
 
 @Controller
 public class BookingController {
@@ -84,8 +85,8 @@ public class BookingController {
             return "booking/free_room";
         }
     }
-    @GetMapping("/booking/{id}")
-    public String booking_custom(@PathVariable(value="id") int id,   Model model) {
+    @GetMapping("/booking/{id}_{error}")
+    public String booking_custom(@PathVariable(value="id") int id,@PathVariable(value="error") int error,  Model model) {
         Booking booking = new Booking();
         booking.setRoom(roomService.getById(id));
         room_1=booking.getRoom();
@@ -99,11 +100,16 @@ public class BookingController {
         booking.setDate_departure(date_2);
         booking.setCount_people(count_1);
         booking.setPrice(price);
+        model.addAttribute("error", error);
         model.addAttribute("booking", booking);
         return "booking/form";
     }
-    @PostMapping("/booking/{id}")
+    @PostMapping("/booking/{id}_{error}")
     public String booking_rest(Booking booking, Model model)  {
+        String str=  "^\\s?((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?\\s?";
+        if (!Pattern.compile(str).matcher(booking.getPhone_number()).matches()) {
+            return "redirect:/booking/{id}_1";
+        }
         booking.setDate_arrival(date_1);
         booking.setDate_departure(date_2);
         booking.setCount_people(count_1);

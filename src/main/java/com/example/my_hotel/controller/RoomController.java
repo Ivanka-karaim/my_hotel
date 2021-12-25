@@ -1,8 +1,10 @@
 package com.example.my_hotel.controller;
 
 import com.example.my_hotel.dto.RoomDTO;
+import com.example.my_hotel.model.Booking;
 import com.example.my_hotel.model.Classificationroom;
 import com.example.my_hotel.model.Room;
+import com.example.my_hotel.repository.BookingRepository;
 import com.example.my_hotel.repository.ClassificationroomRepository;
 import com.example.my_hotel.repository.RoomRepository;
 import com.example.my_hotel.service.RoomService;
@@ -25,6 +27,8 @@ public class RoomController {
     private RoomRepository roomRepository;
     @Autowired
     private ClassificationroomRepository classificationroomRepository;
+    @Autowired
+    private BookingRepository bookingRepository;
 
     @GetMapping("/viewRooms")
     public String view(Model model) {
@@ -81,6 +85,11 @@ public class RoomController {
     @PostMapping("/removeRoom/{id_room}")
     public String remove(@PathVariable(value = "id_room") int id_room, Model model) {
         Room room = roomRepository.findById(id_room).orElseThrow();
+        List<Booking> booking = bookingRepository.findByRoom(room);
+        if (!booking.isEmpty()) {
+            model.addAttribute("error", true);
+            return "rooms";
+        }
         roomRepository.delete(room);
         return "redirect:/viewRooms";
     }
