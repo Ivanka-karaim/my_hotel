@@ -74,7 +74,7 @@
                     <p th:text="${'Name: ' + custom.getId_booking().getName()}"></p>
                     <p th:text="${'Phone number: '+custom.getId_booking().getPhone_number()}"></p>
                     <p th:text="${'Count of people: '+custom.getId_booking().getCount_people()}"></p>
-                    <p th:text="${'Total cost: '+total_cost}"></p>
+                    <p th:text="${'Total cost: '+total_price}"></p>
                 </div>
                 <div th:if="${type=='Preview'}">
 
@@ -93,10 +93,10 @@
                 <div class="container mt-5">
                     <h1>Add custom</h1>
                     <form action="/add" method="post">
-                        <input type="text" name="IPN" placeholder="Enter IPN" class="form-control"><br>
-                        <input type="text" name="id_booking" placeholder="Enter id of booking" class="form-control"><br>
+                        <input type="text" name="IPN" placeholder="Enter IPN" class="form-control" required=""><br>
+                        <input type="text" name="id_booking" placeholder="Enter id of booking" class="form-control" required="Є"><br>
                         <div th:each="el:${services}">
-                            <label>[[${el.getType_service()}]]<input th:name="${el.getId_service()}" type="checkbox" ></label>
+                            <label>[[${el.getType_service()}]]<input th:value="${el.getId_service()}" name="service" type="checkbox" ></label>
                         </div>
                         <button type="submit" class="btn btn-success">Add new custom</button>
                     </form>
