@@ -61,4 +61,19 @@ public class Employees {
     @ManyToOne
     @JoinColumn(name = "id_schedule")
     private Schedules id_schedule;
+
+
+    public Employees(String surname, String fullname, String patron, int ipn, Date birth_date, String email, String phone_number, String workbook, String password_employee, Occupations id_occupation, Schedules id_schedule) {
+        this.surname = surname;
+        this.fullname = fullname;
+        this.patron = patron;
+        this.ipn = ipn;
+        this.birth_date = birth_date;
+        this.email = email;
+        this.phone_number = phone_number;
+        this.workbook = workbook;
+        this.password_employee = password_employee;
+        this.id_occupation = id_occupation;
+        this.id_schedule = id_schedule;
+    }
 }

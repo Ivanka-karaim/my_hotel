@@ -123,6 +123,77 @@
             transform: translateY(-20px) rotate(3deg) scale(1.1);
           }
         }
+        .wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  > * {
+    margin: 5px;
+  }
+}
+
+.media {
+  width: 300px;
+  height: 200px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  img {
+      max-width: 100%;
+      height: auto;
+    }
+}
+
+.layer {
+  opacity: 0;
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 10px;
+  height: 90%;
+  background: #FFF;
+  color: #151E3F;
+  transition: all 0.9s ease;
+  p {
+    transition: all 0.9s ease;
+    transform: scale(0.1)
+  }
+}
+
+p {
+  font-family: 'Inconsolata', monospace;
+  text-align: center;
+  font-size: 15px;
+  letter-spacing:1px;
+}
+
+.media:hover .layer {
+  opacity: 0.8;
+  width: 90%;
+  transition: all 0.5s ease;
+  p {
+    transform: scale(1);
+    transition: all 0.9s ease;
+  }
+}
+
+@media (max-width: 800px){
+  body {
+    transform: scale(0.6);
+  }
+}
+
+@media (max-width: 600px) {
+    .wrapper {
+    display: block;
+    > * {
+      margin: 10px;
+    }
+  }
+}
     </style>
 
 
@@ -150,7 +221,26 @@
             <a  class="gradient-button" href="/booking" role="button">Book a room</a>
         </div>
     </div>
-
+<!--<div class="wrapper">-->
+<!--    <div class="media">-->
+<!--        <div class="layer">-->
+<!--            <p>+ Paul Gilmore</p>-->
+<!--        </div>-->
+<!--        <img src="https://images.unsplash.com/photo-1431818563807-927945852ab6?dpr=1&auto=format&fit=crop&w=1199&h=899&q=80&cs=tinysrgb&crop=" alt="" />-->
+<!--    </div>-->
+<!--    <div class="media">-->
+<!--        <div class="layer">-->
+<!--            <p>+ M. O' Neil</p>-->
+<!--        </div>-->
+<!--        <img src="https://images.unsplash.com/photo-1443397646383-16272048780e?dpr=1&auto=format&fit=crop&w=1199&h=899&q=80&cs=tinysrgb&crop=" alt="" />-->
+<!--    </div>-->
+<!--    <div class="media">-->
+<!--        <div class="layer">-->
+<!--            <p>+ N. Mehta</p>-->
+<!--        </div>-->
+<!--        <img src="https://images.unsplash.com/photo-1442965416224-f6a7eca980fa?dpr=1&auto=format&fit=crop&w=1199&h=799&q=80&cs=tinysrgb&crop=" alt="" />-->
+<!--    </div>-->
+<!--</div>-->
 <div th:insert="blocks/footer :: footer">
 </div>
 </body>
