@@ -1,15 +1,11 @@
 package com.example.my_hotel.controller;
 
-import com.example.my_hotel.dto.AdditionalServicesDTO;
-import com.example.my_hotel.dto.RoomDTO;
+
 import com.example.my_hotel.model.*;
 import com.example.my_hotel.repository.EmployeesRepository;
 import com.example.my_hotel.repository.OccupationsRepository;
-import com.example.my_hotel.repository.RoomRepository;
 import com.example.my_hotel.repository.SchedulesRepository;
 import com.example.my_hotel.service.CustomService;
-import com.example.my_hotel.service.RoomService;
-import org.apache.tomcat.jni.Local;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,8 +15,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.ZoneId;
 import java.util.*;
 
 @Controller
@@ -294,6 +288,7 @@ public class EmployeeController {
     @PostMapping("/employee/management/add")
     public String add(@RequestParam String surname, @RequestParam String fullname, @RequestParam String patron, @RequestParam int ipn, @RequestParam Date birth_date, @RequestParam String email, @RequestParam String phone_number, @RequestParam String workbook, @RequestParam String password_employee, @RequestParam int id_occupation, @RequestParam int id_schedule, Model model) {
         boolean error = false;
+        //Date birth;
         model.addAttribute("title", "Add");
         if(fullname.equals("")) {
             model.addAttribute("errorFullname", "Enter name.");
@@ -307,7 +302,7 @@ public class EmployeeController {
             model.addAttribute("errorPatron", "Enter Patronymic.");
             error = true;
         }
-        if(birth_date==null) {
+        if(birth_date == null) {
             model.addAttribute("errorBirth", "Enter Birth-date.");
             error = true;
         }
