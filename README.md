@@ -1,4 +1,4 @@
-# Hotel Collaborative Course Web-Project and database project
+# Hotel Collaborative Course Web and Database project
 
 Project Goal: Create software for database, which is based on subject area, using collaborative software methodology and version control system for Hotel functioning according to subject area .
 
