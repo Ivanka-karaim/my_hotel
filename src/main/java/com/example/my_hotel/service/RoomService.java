@@ -1,8 +1,5 @@
 package com.example.my_hotel.service;
-
-import com.example.my_hotel.dto.AdditionalServicesDTO;
 import com.example.my_hotel.dto.RoomDTO;
-import com.example.my_hotel.model.AdditionalServices;
 import com.example.my_hotel.model.Room;
 import com.example.my_hotel.repository.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -130,8 +130,8 @@ public class BookingController {
     }
     @GetMapping("/viewBook")
     public String view_book(Model model) {
-//        List<Booking> booking = bookingService.getAllBooks();
-        List<Booking> booking = bookingRepository.findAll();
+        List<Booking> booking = bookingService.getAllBooks();
+        //List<Booking> booking = bookingRepository.findAll();
         model.addAttribute("title", "View");
         model.addAttribute("booking", booking);
         return "bookings";
@@ -145,15 +145,18 @@ public class BookingController {
     }
     @PostMapping("/removeBook")
     public String remove_book(@RequestParam int id_booking, Model model) {
-        Booking booking = bookingRepository.getById(id_booking).get();
+        Booking booking = bookingService.getById(id_booking);
+       // Booking booking = bookingRepository.getById(id_booking).get();
         model.addAttribute("booking", booking);
         model.addAttribute("title", "Remove");
         return "bookings";
     }
     @PostMapping("/removeBook/{id_booking}")
     public String removes_book(@PathVariable(value = "id_booking") int id_booking, Model model) {
-        Booking booking= bookingRepository.findById(id_booking).orElseThrow();
-        bookingRepository.delete(booking);
+        Booking booking = bookingService.getById(id_booking);
+        bookingService.deleteBook(booking);
+        //Booking booking= bookingRepository.findById(id_booking).orElseThrow();
+        //bookingRepository.delete(booking);
         return "redirect:/viewBook";
     }
 }

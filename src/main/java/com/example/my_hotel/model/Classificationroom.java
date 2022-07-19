@@ -33,9 +33,7 @@ public class Classificationroom {
         this.cost=cost;
         this.number_beds=number_beds;
     }
-    public String toString() {
-        return  this.classification_room + "', Cost: '" + this.cost + "', Number beds: '" + this.number_beds + "'";
-    }
+
 }
 
 
